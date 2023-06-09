@@ -1,0 +1,48 @@
+name: Publish to GitHub Pages
+
+on:
+    push:
+        branches: ["main"]
+
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+            - uses: denoland/setup-deno@v1
+
+            - name: Install Node dependencies
+              run: npm i
+              working-directory: ./components
+            - name: Build
+              run: deno run -A ./tools/build.ts
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v1
+              with:
+                  path: dist/
+
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build
+        if: |
+            github.ref == 'refs/heads/main' &&
+            github.repository_owner == 'Mabi19'
+
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        permissions:
+            pages: write
+            id-token: write
+
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v2
