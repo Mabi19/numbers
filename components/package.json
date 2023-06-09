@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "lit": "^2.7.5"
+  },
+  "type": "module"
+}
