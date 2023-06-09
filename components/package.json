@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "lit": "^2.7.5"
+    "lit": "^3.0.0-pre.0"
   },
   "type": "module"
 }
