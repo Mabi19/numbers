@@ -14,7 +14,7 @@ const components = await compileComponents(CompileMode.PRODUCTION);
 
 // copy over assets
 console.log("Copying assets...");
-copy("./assets", "./dist/assets", { overwrite: true });
+await copy("./assets", "./dist/assets", { overwrite: true });
 
 await Deno.writeTextFile("./dist/index.html", content);
 await Deno.writeTextFile("./dist/assets/components.js", components);
