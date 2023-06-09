@@ -7,20 +7,24 @@ export const enum CompileMode {
 
 export async function compileComponents(mode: CompileMode) {
     const startTime = performance.now();
-    const result = await esbuild.build({
+    await esbuild.build({
         entryPoints: ["./components/index.ts"],
         outdir: "./components/build",
         bundle: true,
         minify: mode == CompileMode.PRODUCTION,
         sourcemap: mode == CompileMode.DEVELOPMENT,
         target: [
-            "es2019",
+            "es2021",
             "chrome110",
             "firefox110",
             "safari16",
-        ]
+        ],
+        logLevel: mode == CompileMode.PRODUCTION ? "info" : "warning",
     });
-    console.log(`component compilation took ${performance.now() - startTime}ms`);
+
+    if (mode == CompileMode.DEVELOPMENT) {
+        console.log(`Compiled components in ${Math.round(performance.now() - startTime)}ms`);
+    }
 
     if (mode == CompileMode.PRODUCTION) {
         esbuild.stop();
