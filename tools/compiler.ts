@@ -12,7 +12,7 @@ export async function compileComponents(mode: CompileMode) {
         outdir: "./components/build",
         bundle: true,
         minify: mode == CompileMode.PRODUCTION,
-        sourcemap: mode == CompileMode.DEVELOPMENT,
+        sourcemap: mode == CompileMode.DEVELOPMENT ? "inline" : false,
         target: [
             "es2021",
             "chrome110",
