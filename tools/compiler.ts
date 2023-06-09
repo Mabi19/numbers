@@ -7,34 +7,38 @@ export const enum CompileMode {
 
 let context: esbuild.BuildContext | undefined = undefined;
 
+function makeESBuildOptions(mode: CompileMode) {
+    return {
+        entryPoints: ["./components/index.ts"],
+        outdir: "./components/build",
+        bundle: true,
+        minify: mode == CompileMode.PRODUCTION,
+        sourcemap: mode == CompileMode.DEVELOPMENT ? "inline" as const : false,
+        target: [
+            "es2021",
+            "chrome110",
+            "firefox110",
+            "safari16",
+        ],
+        logLevel: mode == CompileMode.PRODUCTION ? "info" as const : "warning" as const,
+    }
+}
+
 export async function compileComponents(mode: CompileMode) {
     const startTime = performance.now();
 
-    if (!context) {
-        context = await esbuild.context({
-            entryPoints: ["./components/index.ts"],
-            outdir: "./components/build",
-            bundle: true,
-            minify: mode == CompileMode.PRODUCTION,
-            sourcemap: mode == CompileMode.DEVELOPMENT ? "inline" : false,
-            target: [
-                "es2021",
-                "chrome110",
-                "firefox110",
-                "safari16",
-            ],
-            logLevel: mode == CompileMode.PRODUCTION ? "info" : "warning",
-        });
-    }
-
-    context.rebuild();
-
     if (mode == CompileMode.DEVELOPMENT) {
-        console.log(`Compiled components in ${Math.round(performance.now() - startTime)}ms`);
-    }
+        // use the Context API to keep the ESBuild instance
+        if (!context) {
+            context = await esbuild.context(makeESBuildOptions(mode));
+        }
 
-    if (mode == CompileMode.PRODUCTION) {
-        context.dispose();
+        context.rebuild();
+
+        console.log(`Compiled components in ${Math.round(performance.now() - startTime)}ms`);
+    } else {
+        // just build it
+        await esbuild.build(makeESBuildOptions(mode));
         esbuild.stop();
     }
 
