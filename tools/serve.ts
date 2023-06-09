@@ -36,10 +36,15 @@ function watchUpdates() {
     (async () => {
         const componentsWatcher = Deno.watchFs(["./components/"]);
         for await (const event of componentsWatcher) {
-            const indexPath = await Deno.realPath("./components/build/index.js");
-            const paths = await Promise.all(event.paths.map((path) => Deno.realPath(path)))
-            if (paths.some((path) => path == indexPath)) {
-                continue;
+            // check if the event is about the esbuild output file
+            // (we do not want to recurse forever)
+            // also, remove events should always invoke a rebuild (for example, if the esbuild output is removed)
+            if (event.kind != "remove") {
+                const indexPath = await Deno.realPath("./components/build/index.js");
+                const paths = await Promise.all(event.paths.map((path) => Deno.realPath(path)))
+                if (paths.some((path) => path == indexPath)) {
+                    continue;
+                }
             }
             if (performance.now() - lastRefresh < 150) {
                 continue;
@@ -53,7 +58,7 @@ function watchUpdates() {
     // assets
     (async () => {
         const assetsWatcher = Deno.watchFs(["./assets/"]);
-        for await (const event of assetsWatcher) {
+        for await (const _event of assetsWatcher) {
             if (performance.now() - lastRefresh < 150) {
                 continue;
             }
