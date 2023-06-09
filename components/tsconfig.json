@@ -2,6 +2,7 @@
     "compilerOptions": {
         "target": "ES6",
         "experimentalDecorators": true,
+        "useDefineForClassFields": false,
         "isolatedModules": true,
         "moduleResolution": "nodenext"
     }
