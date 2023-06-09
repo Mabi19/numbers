@@ -5,28 +5,36 @@ export const enum CompileMode {
     PRODUCTION
 }
 
+let context: esbuild.BuildContext | undefined = undefined;
+
 export async function compileComponents(mode: CompileMode) {
     const startTime = performance.now();
-    await esbuild.build({
-        entryPoints: ["./components/index.ts"],
-        outdir: "./components/build",
-        bundle: true,
-        minify: mode == CompileMode.PRODUCTION,
-        sourcemap: mode == CompileMode.DEVELOPMENT ? "inline" : false,
-        target: [
-            "es2021",
-            "chrome110",
-            "firefox110",
-            "safari16",
-        ],
-        logLevel: mode == CompileMode.PRODUCTION ? "info" : "warning",
-    });
+
+    if (!context) {
+        context = await esbuild.context({
+            entryPoints: ["./components/index.ts"],
+            outdir: "./components/build",
+            bundle: true,
+            minify: mode == CompileMode.PRODUCTION,
+            sourcemap: mode == CompileMode.DEVELOPMENT ? "inline" : false,
+            target: [
+                "es2021",
+                "chrome110",
+                "firefox110",
+                "safari16",
+            ],
+            logLevel: mode == CompileMode.PRODUCTION ? "info" : "warning",
+        });
+    }
+
+    context.rebuild();
 
     if (mode == CompileMode.DEVELOPMENT) {
         console.log(`Compiled components in ${Math.round(performance.now() - startTime)}ms`);
     }
 
     if (mode == CompileMode.PRODUCTION) {
+        context.dispose();
         esbuild.stop();
     }
 
