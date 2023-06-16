@@ -1,1 +1,106 @@
 <h1>How Computers Work With Numbers</h1>
+
+TODO:
+<ul>
+    <li>fit subnormals in here somewhere</li>
+</ul>
+
+<p>
+    [intro]
+</p>
+
+<h2>Counting with bits</h2>
+<p>
+    [intro to binary]
+</p>
+
+<h2>Negative numbers</h2>
+<p>
+    <ul>
+        <li>two's complement</li>
+        <li>parallels to the p-adics</li>
+    </ul>
+</p>
+
+<hr>
+
+<h2>A binary point in the middle</h2>
+<p>
+    <ul>
+        <li>fixed point demonstration</li>
+        <li>why it's not that great</li>
+    </ul>
+</p>
+
+<h2>But we can do better</h2>
+<p>
+    <ul>
+        <li>we want to make the best of our 2^32 values</li>
+        <li>high precision for small numbers and low precision for large numbers</li>
+        <li>we can't represent all the real numbers</li>
+        <li>the obvious solution is rounding
+            <ul>
+                <li>this makes it so each value actually represents a range</li>
+            </ul>
+        </li>
+    </ul>
+</p>
+
+<h2>Moving the binary point</h2>
+<p>
+    <ul>
+        <li>dedicate a few bits to where to point position</li>
+        <li>problem: multiple bit patterns for the same values</li>
+    </ul>
+</p>
+
+<h2>Scientific notation</h2>
+<p>
+    <ul>
+        <li>how it avoids the problem</li>
+        <li>let's do it! instead of moving the binary point, treat some bits as an exponent</li>
+    </ul>
+</p>
+
+<h3>Removing the invalid cases</h3>
+<p>
+    <ul>
+        <li>for scientific notation, the first digit must be non-zero for unique representations</li>
+        <li>so let's just put a predefined 1 there</li>
+        <li>problem: can't write 0 with the trick</li>
+        <li>for now, set the all zeroes bit pattern to be equal to 0</li>
+    </ul>
+</p>
+
+<h2>Negative numbers again</h2>
+<p>
+    <ul>
+        <li>we could try doing shifting or something like two's complement again, but that'd be really complex and hard to work with</li>
+        <li>instead just make 1 bit be the sign</li>
+        <li>note that +/- 0 exists now, but that's not a big deal (they're just the two different ends of the range)</li>
+    </ul>
+</p>
+
+<h2>What happens if we divide by a really small number?</h2>
+<p>
+    <ul>
+        <li>well, we get a large number</li>
+        <li>remember that the value 0 actually represents numbers close to zero
+            <ul>
+                <li>this means that 1/0 has a value, but we can't assign it a value because we don't have enough information</li>
+                <li>so, let's make a special value, representing a very large number</li>
+                <li>what properties should it have</li>
+            </ul>
+        </li>
+    </ul>
+</p>
+
+<h3>What about 0/0?</h3>
+<p>
+    <ul>
+        <li>a small number we don't know exactly divided by another small number we don't know exactly could be literally anything</li>
+        <li>also, representing various kinds of errors (such as square roots of negative numbers) could be useful</li>
+        <li>let's dedicate the top exponent to these error (NaN) values</li>
+        <li>we can also put the infinities in there</li>
+    </ul>
+</p>
