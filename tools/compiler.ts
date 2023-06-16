@@ -1,3 +1,4 @@
+import { resolve } from "https://deno.land/std@0.188.0/path/win32.ts";
 import * as esbuild from "https://deno.land/x/esbuild@v0.17.19/mod.js";
 
 export const enum CompileMode {
@@ -47,16 +48,35 @@ export async function compileComponents(mode: CompileMode) {
 
 const devScript = `
 <script>
-const ws = new WebSocket("ws://localhost:8080/reload");
-ws.addEventListener("message", (event) => {
-    window.location.reload();
+window.addEventListener("load", () => {
+    const ws = new WebSocket("ws://localhost:8080/reload");
+    ws.addEventListener("message", (event) => {
+        window.location.reload();
+    });
 });
 </script>
 `;
 
+function sleep(ms: number) {
+    return new Promise((res) => setTimeout(res, ms));
+}
+
+// a file may be read as blank if it is being currently overridden
+async function safeReadFile(path: string) {
+    for (let i = 0; i < 3; i++) {
+        // try to read it
+        const result = await Deno.readTextFile(path);
+        if (result.length != 0) {
+            return result;
+        }
+        await sleep(50);
+    }
+    return "";
+}
+
 export async function compileContent(mode: CompileMode) {
-    const template = await Deno.readTextFile("./template.html");
-    const content = await Deno.readTextFile("./content.html");
+    const template = await safeReadFile("./template.html");
+    const content = await safeReadFile("./content.html");
 
     let result = template.replace("#slot#", content);
     if (mode == CompileMode.DEVELOPMENT) {

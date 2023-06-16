@@ -28,6 +28,7 @@ function watchUpdates() {
             }
             lastRefresh = performance.now();
             specialRoutes["/"].content = await compileContent(CompileMode.DEVELOPMENT);
+            console.log(`content reload took ${Math.round(performance.now() - lastRefresh)}ms`);
             reloadClients();
         }
     })();
@@ -51,6 +52,7 @@ function watchUpdates() {
             }
             lastRefresh = performance.now();
             specialRoutes["/assets/components.js"].content = await compileComponents(CompileMode.DEVELOPMENT);
+            console.log(`component reload took ${Math.round(performance.now() - lastRefresh)}ms`);
             reloadClients();
         }
     })();
@@ -94,7 +96,7 @@ app.use(async (ctx) => {
             root: Deno.cwd(),
         });
     }
-})
+});
 
 await app.listen({
     port: 8080,
