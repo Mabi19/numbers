@@ -50,7 +50,7 @@ TODO:
 <h2>Moving the binary point</h2>
 <p>
     <ul>
-        <li>dedicate a few bits to where to point position</li>
+        <li>dedicate a few bits to point position</li>
         <li>problem: multiple bit patterns for the same values</li>
     </ul>
 </p>
@@ -69,7 +69,7 @@ TODO:
         <li>for scientific notation, the first digit must be non-zero for unique representations</li>
         <li>so let's just put a predefined 1 there</li>
         <li>problem: can't write 0 with the trick</li>
-        <li>for now, set the all zeroes bit pattern to be equal to 0</li>
+        <li>easy solution: set the all zeroes bit pattern to be equal to 0</li>
     </ul>
 </p>
 
@@ -82,10 +82,9 @@ TODO:
     </ul>
 </p>
 
-<h2>What happens if we divide by a really small number?</h2>
+<h2>Fully covering the number line</h2>
 <p>
     <ul>
-        <li>well, we get a large number</li>
         <li>remember that the value 0 actually represents numbers close to zero
             <ul>
                 <li>this means that 1/0 has a value, but we can't assign it a value because we don't have enough information</li>
@@ -103,5 +102,31 @@ TODO:
         <li>also, representing various kinds of errors (such as square roots of negative numbers) could be useful</li>
         <li>let's dedicate the top exponent to these error (NaN) values</li>
         <li>we can also put the infinities in there</li>
+    </ul>
+</p>
+
+<h2>Squeezing out a bit more range</h3>
+<p>
+    <ul>
+        <li>instead of dedicating a value to 0, let's set the lowest exponent's leading digit to 0 but increase it by 1</li>
+        <li>this keeps the ability to write 0 and uniqueness, but now we can write much smaller numbers</li>
+        <li>(how small exactly?)</li>
+    </ul>
+</p>
+
+<h2>Conclusion</h2>
+<p>
+    <ul>
+        <li>those are complete descriptions of how most modern computers store integers and floats</li>
+        <li>note that these formats come in a variety of sizes</li>
+        <li>these are also used as building blocks to make other funky formats
+            <ul>
+                <li>complex numbers (pair of floats)</li>
+                <li>rationals (numerator + denominator)</li>
+                <li>arbitrary-precision integers (size + data)</li>
+                <li>decimal numbers (digits 0-9 encoded as bits)</li>
+                <li>etc.</li>
+            </ul>
+        </li>
     </ul>
 </p>
