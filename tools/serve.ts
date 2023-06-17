@@ -98,6 +98,8 @@ app.use(async (ctx) => {
     }
 });
 
+console.log("Open on http://localhost:8080/")
+
 await app.listen({
     port: 8080,
 });
