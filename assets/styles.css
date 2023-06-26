@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 *, *::after, *::before {
     box-sizing: border-box;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
     line-height: 1.3;
 }
 
