@@ -42,7 +42,14 @@ function watchUpdates() {
             // also, remove events should always invoke a rebuild (for example, if the esbuild output is removed)
             if (event.kind != "remove") {
                 const indexPath = await Deno.realPath("./components/build/index.js");
-                const paths = await Promise.all(event.paths.map((path) => Deno.realPath(path)))
+                console.log(event.paths);
+                let paths = await Promise.all(
+                    event.paths.map(
+                        (path) => Deno.realPath(path).catch(() => null)
+                    )
+                );
+                paths = paths.filter((path) => path != null);
+
                 if (paths.some((path) => path == indexPath)) {
                     continue;
                 }
@@ -51,9 +58,13 @@ function watchUpdates() {
                 continue;
             }
             lastRefresh = performance.now();
-            specialRoutes["/assets/components.js"].content = await compileComponents(CompileMode.DEVELOPMENT);
+
+            const compileResult = await compileComponents(CompileMode.DEVELOPMENT);
+            if (compileResult != null) {
+                specialRoutes["/assets/components.js"].content = compileResult;
+                reloadClients();
+            }
             console.log(`component reload took ${Math.round(performance.now() - lastRefresh)}ms`);
-            reloadClients();
         }
     })();
 

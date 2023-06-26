@@ -30,11 +30,20 @@ export async function compileComponents(mode: CompileMode) {
 
     if (mode == CompileMode.DEVELOPMENT) {
         // use the Context API to keep the ESBuild instance
+        console.log("a");
         if (!context) {
             context = await esbuild.context(makeESBuildOptions(mode));
         }
 
-        context.rebuild();
+        console.log("b");
+
+        try {
+            await context.rebuild();
+        } catch (e) {
+            return null;
+        }
+
+        console.log("c");
 
         console.log(`Compiled components in ${Math.round(performance.now() - startTime)}ms`);
     } else {
