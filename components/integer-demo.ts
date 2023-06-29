@@ -1,12 +1,18 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { bitsToInt, bitsToUInt, uintToBits } from "./bits";
+import { bitsToInt, bitsToSignBitInt, bitsToUInt, uintToBits } from "./bits";
 import { bitStyles } from "./styles";
+
+const bitsToNumberFuncs = {
+    unsigned: bitsToUInt,
+    signed: bitsToInt,
+    "sign-bit": bitsToSignBitInt,
+}
 
 @customElement("integer-demo")
 export class IntegerDemo extends LitElement {
     @property()
-    type: "unsigned" | "signed";
+    type: "unsigned" | "signed" | "sign-bit";
 
     @property({ converter: (str) => uintToBits(parseInt(str)), type: Array, attribute: "value" })
     bits: boolean[] = uintToBits(0);
@@ -16,7 +22,7 @@ export class IntegerDemo extends LitElement {
     ]
 
     render() {
-        const numValue = this.type == "unsigned" ? bitsToUInt(this.bits) : bitsToInt(this.bits);
+        const numValue = bitsToNumberFuncs[this.type](this.bits);
 
         return html`
             <div>
