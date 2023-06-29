@@ -1,33 +1,45 @@
 <h1>How Computers Use Numbers</h1>
 
-
 <p>
     We have tricked electrons into doing simple logic, but that's not too useful on its own.
     While this is enough to perform basically any computation, <em>actually having numbers</em> would be quite useful.
     So let's invent them!
 </p>
 
+<h2>The goal</h2>
+<p>
+    First, we need to find what traits a good number format has, and thus we should be aiming for.
+    Here are the ones modern computers optimize for:
+</p>
+<dl>
+    <dt>Usefulness in real programs</dt>
+    <dd>
+        Perhaps the most important trait, as the whole point of having the capability to do math is for programs to use it.
+        Additionally, fitting as many use cases into as few formats as possible would be ideal,
+        as having more ways to store numbers than necessary would make processors a lot more expensive and power-hungry.
+    </dd>
+    <dt>Simplicity</dt>
+    <dd>
+        Similarly to avoiding too many formats, straightforward logic would also save on price and power usage.
+    </dd>
+    <dt>Efficient memory usage</dt>
+    <dd>
+        Memory is a limited resource; therefore using it as efficiently as possible would be ideal,
+        for example by avoiding duplicate values.
+    </dd>
+</dl>
 
 <h2>Memory</h2>
-<p>
-    Just having the ability to do arithmetic without being able to store its results wouldn't be very useful.
-    Thankfully, we have memory.
-</p>
-
 <memory-demo></memory-demo>
-
 <p>
     Memory is a collection of cells holding one of two values (i.e. a bit). These can represent basically anything that has two states,
     though usually they are represented by ones and zeroes.
 </p>
-
 <memory-demo-controller></memory-demo-controller>
-
 <p>
     Note that bits are usually grouped in eights, so using a multiple of 8 would be easiest to work with.
     We'll be working with 32 bits here, but all of the following number formats come in a variety of sizes.
 </p>
-
 
 <h2>Counting with bits</h2>
 <p>
@@ -44,15 +56,12 @@
         </mrow>
     </math>).
 </p>
-
 <integer-demo type="unsigned" value="53"></integer-demo>
 
 <h2>Negative numbers</h2>
 <p>
-    <ul>
-        <li>two's complement</li>
-        <li>parallels to the p-adics</li>
-    </ul>
+    There are multiple obvious (and some less obvious) ways to implement negative numbers,
+    each with advantages and disadvantages.
 </p>
 
 <hr>
