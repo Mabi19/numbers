@@ -4,6 +4,6 @@
         "experimentalDecorators": true,
         "useDefineForClassFields": false,
         "isolatedModules": true,
-        "moduleResolution": "nodenext"
+        "moduleResolution": "node"
     }
 }
