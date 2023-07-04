@@ -1,6 +1,8 @@
+const BITS = 8;
+
 export function uintToBits(value: number) {
     const result: boolean[] = [];
-    for (let i = 0; i < 32; i++) {
+    for (let i = 0; i < BITS; i++) {
         // because of how two's complement works, we don't need to care about
         // signedness here
         result.push(Boolean(value & (1 << i)));
