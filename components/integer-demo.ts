@@ -5,7 +5,7 @@ import { bitStyles } from "./styles";
 
 const bitsToNumberFuncs = {
     unsigned: bitsToUInt,
-    signed: bitsToInt,
+    "twos-complement": bitsToInt,
     "sign-bit": bitsToSignBitInt,
     shifted: (bits: boolean[]) => bitsToUInt(bits) - 0x80,
 }
@@ -13,7 +13,7 @@ const bitsToNumberFuncs = {
 @customElement("integer-demo")
 export class IntegerDemo extends LitElement {
     @property()
-    type: "unsigned" | "signed" | "sign-bit" | "shifted";
+    type: "unsigned" | "twos-complement" | "sign-bit" | "shifted";
 
     @property({ converter: (str) => uintToBits(parseInt(str)), type: Array, attribute: "value" })
     bits: boolean[] = uintToBits(0);

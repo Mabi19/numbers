@@ -3,8 +3,6 @@ const BITS = 8;
 export function uintToBits(value: number) {
     const result: boolean[] = [];
     for (let i = 0; i < BITS; i++) {
-        // because of how two's complement works, we don't need to care about
-        // signedness here
         result.push(Boolean(value & (1 << i)));
     }
     return result;
@@ -13,8 +11,7 @@ export function uintToBits(value: number) {
 export function bitsToUInt(bits: boolean[]) {
     let result = 0;
     for (let i = 0; i < bits.length; i++) {
-        // use exponentiation to not convert to 32-bit ints
-        result += Number(bits[i]) * 2 ** i;
+        result += Number(bits[i]) * 1 << i;
     }
     return result;
 }
@@ -22,8 +19,12 @@ export function bitsToUInt(bits: boolean[]) {
 export function bitsToInt(bits: boolean[]) {
     let result = 0;
     for (let i = 0; i < bits.length; i++) {
-        // use bitshifting to convert to a 32-bit int
-        result += Number(bits[i]) * 1 << i;
+        let summand = Number(bits[i]) * 1 << i;
+        // flip it if it's supposed to be negative
+        if (i == BITS - 1)
+            summand *= -1;
+
+        result += summand;
     }
     return result;
 }
@@ -32,7 +33,7 @@ export function bitsToSignBitInt(bits: boolean[]) {
     let result = 0;
     for (let i = 0; i < bits.length - 1; i++) {
         // we have a custom negative implementation so we don't need to care about
-        //the built-in two's complement
+        // the built-in two's complement
         result += Number(bits[i]) * 1 << i;
     }
     // manually set the sign
