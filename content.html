@@ -33,23 +33,23 @@
 <memory-demo></memory-demo>
 <p>
     Memory is a collection of cells holding one of two values (i.e. a bit). These can represent basically anything that has two states,
-    though usually they are represented by ones and zeroes.
+    though usually they are visualized using ones and zeroes.
 </p>
 <memory-demo-controller></memory-demo-controller>
 <p>
     Note that bits are usually grouped in eights, so using a multiple of 8 would be easiest to work with.
-    We'll be working with 32 bits here, but all of the following number formats come in a variety of sizes.
+    We'll use just 8 bits for simplicity, but all of the following number formats come in a variety of sizes.
 </p>
 
 <h2>Counting with bits</h2>
 <p>
     Similarly to how we use the 10 digits to count in base 10, we can use bits to count in base 2.
-    By assigning each bit to a power of 2, we can use 32 bits to store numbers between 0 and 4,294,967,295
+    By assigning each bit to a power of 2, we can use our 8 bits to store numbers between 0 and 255
     (<math display="inline">
         <mrow>
             <msup>
                 <mn>2</mn>
-                <mn>32</mn>
+                <mn>8</mn>
             </msup>
             <mo>-</mo>
             <mn>1</mn>
@@ -60,9 +60,35 @@
 
 <h2>Negative numbers</h2>
 <p>
-    An obvious way of creating negative numbers is to just use 1 bit as a sign.
+    An obvious way of defining negative numbers is to just use 1 bit as a sign.
 </p>
-<integer-demo type="sign-bit" value="0x80000012"></integer-demo>
+<integer-demo type="sign-bit" value="0x92"></integer-demo>
+<p>
+    However, this way of doing it has one tiny issue: there are two ways to write 0.
+</p>
+<integer-demo type="sign-bit" value="0" locked></integer-demo>
+<integer-demo type="sign-bit" value="0x80" locked></integer-demo>
+<p>
+    Instead, we could interpret the number as if it was unsigned, but then shift it down by 128
+    (<math display="inline">
+        <mrow>
+            <msup>
+                <mn>2</mn>
+                <mn>7</mn>
+            </msup>
+        </mrow>
+    </math>)
+    to be able to represent numbers from -128 to 127:
+</p>
+<integer-demo type="shifted" value="0x80"></integer-demo>
+<p>
+    At first glance this way of doing negatives seems perfect!
+    After all it's very simple, it covers a useful range and all the bit patterns are unique.
+</p>
+<p>
+    But we can do better.
+</p>
+
 
 <hr>
 
