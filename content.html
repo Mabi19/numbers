@@ -131,10 +131,19 @@
 
 <h2>A binary point in the middle</h2>
 <p>
-    <ul>
-        <li>fixed point demonstration</li>
-        <li>why it's not that great</li>
-    </ul>
+    Since we have mastered integers, let's try going fractional.
+    Let's start by taking a regular 32-bit unsigned integer and putting a binary point in the middle:
+</p>
+<fixed-point-demo value="0x00038000"></fixed-point-demo>
+<p>
+    This is called fixed point, and it's <em>not terrible</em>.
+    We have drastically cut the range of numbers we can represent even without including negative numbers
+    (as an integer, we could represent the range 0-4,294,967,295 with 32 bits, and this format has only 0 to just under 65536).
+    We could try putting the binary point somewhere else, but there really isn't a spot that gives both decent range and precision.
+</p>
+<p>
+    However, it is very simple, and the fact that addition and subtraction work the same as for integers
+    does make this a good option in some niche cases.
 </p>
 
 <h2>But we can do better</h2>
