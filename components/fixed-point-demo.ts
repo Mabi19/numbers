@@ -20,15 +20,15 @@ export class FixedPointDemo extends LitElement {
 
     render() {
         const numValue = bitsToFixedPoint(this.bits);
-        const integerPart = this.bits.slice(0, this.bits.length / 2);
-        const fractionalPart = this.bits.slice(this.bits.length / 2);
+        const fractionalPart = this.bits.slice(0, this.bits.length / 2);
+        const integerPart = this.bits.slice(this.bits.length / 2);
 
         return html`
             <div>
                 <div class="bits">
-                    ${this.makeBitElements(integerPart, 0, "red")}
+                    ${this.makeBitElements(fractionalPart, 0, "blue")}
                     <div class="bit">.</div>
-                    ${this.makeBitElements(fractionalPart, 16, "blue")}
+                    ${this.makeBitElements(integerPart, 16, "red")}
                 </div>
                 value: ${numValue}
             </div>
