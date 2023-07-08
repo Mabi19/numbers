@@ -4,7 +4,7 @@ import { bitsToFixedPoint, uintToBits } from "./bits";
 import { bitStyles } from "./styles";
 
 @customElement("fixed-point-demo")
-export class IntegerDemo extends LitElement {
+export class FixedPointDemo extends LitElement {
 
     @property({ converter: (str) => uintToBits(parseInt(str), 32), type: Array, attribute: "value" })
     bits: boolean[] = uintToBits(0, 32);
