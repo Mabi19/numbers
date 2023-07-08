@@ -20,4 +20,16 @@ export const bitStyles = css`
         user-select: none;
         cursor: pointer;
     }
+
+    .bit.red {
+        background-color: pink;
+    }
+
+    .bit.green {
+        background-color: lightgreen;
+    }
+
+    .bit.blue {
+        background-color: lightblue;
+    }
 `;

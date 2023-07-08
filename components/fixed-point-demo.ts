@@ -12,9 +12,9 @@ export class FixedPointDemo extends LitElement {
         bitStyles
     ]
 
-    makeBitElements(bits: boolean[], offset: number = 0) {
+    makeBitElements(bits: boolean[], offset: number = 0, extraClass: string | undefined = undefined) {
         return bits.map((val, idx) => html`
-            <div class="bit" @click="${() => this._toggleBit(idx + offset)}">${val ? 1 : 0}</div>
+            <div class="bit ${extraClass}" @click="${() => this._toggleBit(idx + offset)}">${val ? 1 : 0}</div>
         `)
     }
 
@@ -26,9 +26,9 @@ export class FixedPointDemo extends LitElement {
         return html`
             <div>
                 <div class="bits">
-                    ${this.makeBitElements(integerPart)}
+                    ${this.makeBitElements(integerPart, 0, "red")}
                     <div class="bit">.</div>
-                    ${this.makeBitElements(fractionalPart, 16)}
+                    ${this.makeBitElements(fractionalPart, 16, "blue")}
                 </div>
                 value: ${numValue}
             </div>
