@@ -1,4 +1,3 @@
-import { resolve } from "https://deno.land/std@0.188.0/path/win32.ts";
 import * as esbuild from "https://deno.land/x/esbuild@v0.17.19/mod.js";
 
 export const enum CompileMode {

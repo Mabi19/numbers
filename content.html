@@ -148,25 +148,27 @@
 
 <h2>But we can do better</h2>
 <p>
-    <ul>
-        <li>we want to make the best of our 2^32 values</li>
-        <li>high precision for small numbers and low precision for large numbers</li>
-        <li>we can't represent all the real numbers</li>
-        <li>the obvious solution is rounding
-            <ul>
-                <li>this makes it so each value actually represents a range</li>
-            </ul>
-        </li>
-    </ul>
+    Having uniformly spaced values, despite being great for integers, hasn't worked out so well for fractions.
+    So, how should we distribute them? Well, since we want to fit as many use cases as possible into one format,
+    both atom-sized and universe-sized numbers should be supported.
+    But in practice, universe-sized numbers are less precise (in absolute terms) than atom-sized ones.
 </p>
 
 <h2>Moving the binary point</h2>
 <p>
-    <ul>
-        <li>dedicate a few bits to point position</li>
-        <li>problem: multiple bit patterns for the same values</li>
-    </ul>
+    Since larger numbers are inherently less precise, could we skip defining all those decimals for large values,
+    Well, yes! Let's dedicate, say, 5 bits to defining where the binary point is.
+    For large values, we can move the point after most of the bits, and for small numbers, we can put it
+    after one zero bit.
 </p>
+<!-- TODO: find a better example value -->
+<moving-point-demo value="0x10001000"></moving-point-demo>
+<p>
+    Also, since 5 bits give us more possible bit positions than there actually are with the remaining 27 value bits,
+    we can use the remaining ones for <em>hypervalues</em>, by putting extra <em>phantom zeroes</em> to fill in the space.
+</p>
+<moving-point-demo value="0xe8001000"></moving-point-demo>
+
 
 <h2>Scientific notation</h2>
 <p>

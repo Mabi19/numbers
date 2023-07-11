@@ -46,3 +46,14 @@ export function bitsToSignBitInt(bits: boolean[]) {
 export function bitsToFixedPoint(bits: boolean[]) {
     return bitsToUInt(bits) / (2 ** Math.floor(bits.length / 2));
 }
+
+export const MOVING_POINT_BITS = 5;
+export function bitsToMovingPoint(bits: boolean[]) {
+    // extract the parts
+    const pointPositionBits = bits.slice(bits.length - MOVING_POINT_BITS);
+    const pointPosition = bitsToUInt(pointPositionBits);
+    const valueBits = bits.slice(0, bits.length - MOVING_POINT_BITS);
+    const rawValue = bitsToUInt(valueBits);
+
+    return { pointPosition, value: rawValue / (2 ** (pointPosition)) }
+}
