@@ -51,9 +51,16 @@ export const MOVING_POINT_BITS = 5;
 export function bitsToMovingPoint(bits: boolean[]) {
     // extract the parts
     const pointPositionBits = bits.slice(bits.length - MOVING_POINT_BITS);
-    const pointPosition = bitsToUInt(pointPositionBits);
+    // decides the multiplier
+    const rawPointPosition = bitsToUInt(pointPositionBits);
+    // decides where to draw it
+    const pointPosition = 27 - Math.min(27, rawPointPosition);
+
     const valueBits = bits.slice(0, bits.length - MOVING_POINT_BITS);
     const rawValue = bitsToUInt(valueBits);
 
-    return { pointPosition, value: rawValue / (2 ** (pointPosition)) }
+    // extra range by adding virtual zeroes
+    let virtualZeroes = Math.max(0, rawPointPosition - 27);
+
+    return { pointPosition, virtualZeroes, value: rawValue / (2 ** (27 - rawPointPosition)) }
 }

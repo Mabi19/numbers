@@ -11,8 +11,8 @@ export const bitStyles = css`
     .bits.locked {
         background-color: lightgray;
     }
-
-    .bits.locked .bit {
+    
+    .bit.locked {
         cursor: initial;
     }
 
@@ -31,5 +31,9 @@ export const bitStyles = css`
 
     .bit.blue {
         background-color: lightblue;
+    }
+
+    .bit.gray {
+        background-color: #ddd;
     }
 `;
