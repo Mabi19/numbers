@@ -156,19 +156,31 @@
 
 <h2>Moving the binary point</h2>
 <p>
-    Since larger numbers are inherently less precise, could we skip defining all those decimals for large values,
+    Since larger numbers are inherently less precise, could we skip defining all those decimals for large values?
     Well, yes! Let's dedicate, say, 5 bits to defining where the binary point is.
     For large values, we can move the point after most of the bits, and for small numbers, we can put it
     after one zero bit.
 </p>
 <!-- TODO: find a better example value -->
-<moving-point-demo value="0x10001000"></moving-point-demo>
+<moving-point-demo value="0x30005000"></moving-point-demo>
 <p>
     Also, since 5 bits give us more possible bit positions than there actually are with the remaining 27 value bits,
     we can use the remaining ones for <em>hypervalues</em>, by putting extra <em>virtual zeroes</em> to fill in the space.
 </p>
-<moving-point-demo value="0xe8001000" hypervalues></moving-point-demo>
-
+<moving-point-demo value="0xe8000003" hypervalues></moving-point-demo>
+<p>
+    However, even with this range extension, the format is still extremely wasteful - for example, you can write 0
+    in 32 different ways as the point position does not matter.
+    <!--
+        Which representations are canonical:
+        fractional values (27 point patterns): half of them, since ending with a 0 means we can shift the number to the right
+        and add 1 to the point position
+        integers (5 point patterns): half of them for the first 4 patterns; if it ends with a 0, we can shift the number to the right
+        and subtract 1 from the point position
+        11111 point pattern is all canonical
+    -->
+    In fact, only <strong>~52%</strong> of all bit patterns produce unique values in this system. Yikes!
+</p>
 
 <h2>Scientific notation</h2>
 <p>
