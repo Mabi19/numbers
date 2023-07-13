@@ -10,7 +10,8 @@ await ensureDir("./dist");
 console.log("Compiling content...");
 const content = await compileContent(CompileMode.PRODUCTION);
 console.log("Compiling components...");
-const components = await compileComponents(CompileMode.PRODUCTION);
+// returning a null should only ever happen during hot reloading in laggy conditions
+const components = (await compileComponents(CompileMode.PRODUCTION))!;
 
 // copy over assets
 console.log("Copying assets...");
