@@ -184,19 +184,46 @@
 
 <h2>Scientific notation</h2>
 <p>
-    <ul>
-        <li>how it avoids the problem</li>
-        <li>let's do it! instead of moving the binary point, treat some bits as an exponent</li>
-    </ul>
+    In order to ensure uniqueness, we can take inspiration from a way you might see numbers written down in the real world -
+    scientific notation! We will need to adapt it to better suit our needs, though.
 </p>
-
-<h3>Removing the invalid cases</h3>
+<p>
+    Remember that a number in scientific notation looks like
+    <math display="inline">
+        <mrow>
+            <mn>2.574</mn>
+            <mo>⋅</mo>
+            <msup>
+                <mn>10</mn>
+                <mn>4</mn>
+            </msup>
+        </mrow>
+    </math>,
+    where the mantissa is a number with one digit in front of the decimal point and an arbitrary amount of digits after,
+    and the exponent is any integer.
+</p>
+<p>
+    For the exponent, let's start by dedicating 8 of our 32 bits to it.
+    Since we need both positive and negative exponents to represent large and small numbers respectively,
+    we need to use a signed format.
+    <!-- TODO: illustrate this -->
+    We could try doing two's complement again, but we wouldn't actually be able to take advantage of its benefits very well in this case.
+    Instead, let's just make it an unsigned integer and subtract 128 from it, as that would make the underlying implementation simpler.
+</p>
+<p>
+    For the mantissa, let's just use the remaining 24 bits as a fixed-point number with 1 digit before the binary point.
+</p>
+<floating-point-demo type="naive"></floating-point-demo>
+<h3>Actually ensuring uniqueness</h3>
 <p>
     <ul>
-        <li>for scientific notation, the first digit must be non-zero for unique representations</li>
-        <li>so let's just put a predefined 1 there</li>
-        <li>problem: can't write 0 with the trick</li>
-        <li>easy solution: set the all zeroes bit pattern to be equal to 0</li>
+        <ul>
+            <li>for scientific notation, the first digit must be non-zero for unique representations</li>
+            <li>there is only one non-zero digit in binary: one</li>
+            <li>so let's just put a predefined 1 there</li>
+            <li>problem: can't write 0 now</li>
+            <li>easy solution: set the all zeroes bit pattern to be equal to 0</li>
+        </ul>
     </ul>
 </p>
 
