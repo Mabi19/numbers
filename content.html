@@ -216,15 +216,17 @@
 <floating-point-demo type="naive"></floating-point-demo>
 <h3>Actually ensuring uniqueness</h3>
 <p>
-    <ul>
-        <ul>
-            <li>for scientific notation, the first digit must be non-zero for unique representations</li>
-            <li>there is only one non-zero digit in binary: one</li>
-            <li>so let's just put a predefined 1 there</li>
-            <li>problem: can't write 0 now</li>
-            <li>easy solution: set the all zeroes bit pattern to be equal to 0</li>
-        </ul>
-    </ul>
+    Our format does not guarantee uniqueness yet. This is because we skipped one requirement of scientific notation:
+    the first digit of the mantissa must be non-zero (otherwise you can change the exponent and get the same value).
+    So, we have to make the first digit of the mantissa non-zero.
+</p>
+<p>
+    Notice that since we're working in binary, there is only one non-zero digit: one!
+    That means that we can omit storing it entirely, which allows us to double the mantissa's precision.
+</p>
+<h3>Oh wait</h3>
+<p>
+    can't write 0 anymore lol
 </p>
 
 <h2>Negative numbers again</h2>
