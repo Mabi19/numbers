@@ -253,6 +253,20 @@
 <!-- TODO: exponent table? -->
 
 <h2>Handling math with varying precision</h2>
+<p>
+    Because of the nature of having limited precision, we're going to encounter results that don't have bit representations
+    quite often when doing basically any kind of math. (Indeed, the 4 billion values cover exactly 0% of the number line.)
+</p>
+<p>
+    The obvious solution to that is rounding: after each mathematical operation, if the result does not have a bit pattern in our system,
+    it snaps to the closest available value.
+</p>
+<p>
+    Notice that now, each bit pattern actually represents a range of values - the value could be anywhere within the rounding window.
+</p>
+<p>
+    Also, remember how we had an extra zero? We can now have +0 represent the positive half of the range and vice versa.
+</p>
 <ul>
     <li>doing math could put us on a value that is not represented by the format</li>
     <li>obvious solution: rounding</li>
