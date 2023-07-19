@@ -212,6 +212,27 @@
 </p>
 <p>
     For the mantissa, let's just use the remaining 24 bits as a fixed-point number with 1 binary digit before the binary point.
+    As for its sign, note that two's complement or shifting would be incredibly awkward to use here.
+    This is because we need to represent a balanced range,
+    and ideally there would be an equal amount of values on either side of 0.
+    But that would make the total amount of values odd (<math display="inline">
+        <mrow>
+            <mn>2</mn>
+            <mo>⋅</mo>
+            <mi>positive values</mi>
+            <mo>+</mo>
+            <mn>1</mn>
+        </mrow>
+    </math>), and the amount of values we have to work with is even (<math display="inline">
+        <mrow>
+            <msup>
+                <mn>2</mn>
+                <mi>bits</mi>
+            </msup>
+        </mrow>
+    </math>).
+    Therefore, since we can't use the extra value effectively, let's just waste it in the simplest way possible:
+    dedicate one bit of the mantissa to the sign. (The extra value goes to -0.)
 </p>
 <floating-point-demo type="naive"></floating-point-demo>
 <h3>Actually ensuring uniqueness</h3>
