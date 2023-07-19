@@ -252,35 +252,42 @@
 </p>
 <!-- TODO: exponent table? -->
 
-<h2>Fully covering the number line</h2>
+<h2>Wait, how would math work with varying precision?</h2>
+<ul>
+    <li>doing math could put us on a value that is not represented by the format</li>
+    <li>obvious solution: rounding</li>
+    <li>notice that that means that each bit pattern actually represents a range of values: the interval closest to it</li>
+    <li>this gives a new meaning for -0</li>
+</ul>
+
+<h2>Extending the range further</h3>
 <p>
     <ul>
-        <li>remember that the value 0 actually represents numbers close to zero
+        <li>subnormals
             <ul>
-                <li>this means that 1/0 has a value, but we can't assign it a value because we don't have enough information</li>
-                <li>so, let's make a special value, representing a very large number</li>
-                <li>what properties should it have</li>
+                <li>instead of dedicating a value to 0, let's set the lowest exponent's leading digit to 0 but increase it by 1</li>
+                <li>this keeps the ability to write 0 and uniqueness, but now we can write much smaller numbers</li>
+                <li>(how small exactly?)</li>
+            </ul>
+        </li>
+        <li>infinities
+            <ul>
+                <li>a range from the maximum value to infinity would be useful</li>
+                <li>so let's dedicate a special value to it, like we did for zero initially</li>
+                <li>properties of a number that could be literally anywhere (but is very large)</li>
             </ul>
         </li>
     </ul>
 </p>
 
-<h3>What about 0/0?</h3>
+<h2>What about 0/0?</h2>
 <p>
     <ul>
         <li>a small number we don't know exactly divided by another small number we don't know exactly could be literally anything</li>
         <li>also, representing various kinds of errors (such as square roots of negative numbers) could be useful</li>
-        <li>let's dedicate the top exponent to these error (NaN) values</li>
+        <li>let's dedicate the top exponent to these error (NaN) values, like we did for the subnormals</li>
+        <li>even weirder properties than the infinities, since this time it could truly be anything</li>
         <li>we can also put the infinities in there</li>
-    </ul>
-</p>
-
-<h2>Squeezing out a bit more range</h3>
-<p>
-    <ul>
-        <li>instead of dedicating a value to 0, let's set the lowest exponent's leading digit to 0 but increase it by 1</li>
-        <li>this keeps the ability to write 0 and uniqueness, but now we can write much smaller numbers</li>
-        <li>(how small exactly?)</li>
     </ul>
 </p>
 
