@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
+/* math font */
+@font-face {
+    font-family: "Latin Modern Math";
+    src: url("./latinmodern-math.otf");
+}
+
 *, *::after, *::before {
     box-sizing: border-box;
 }
@@ -14,3 +20,6 @@ dt {
     font-weight: bold;
 }
 
+math {
+    font-family: "Latin Modern Math";
+}
