@@ -232,7 +232,7 @@
         </mrow>
     </math>).
     Therefore, since we can't use the extra value effectively, let's just waste it in the simplest way possible:
-    dedicate one bit of the mantissa to the sign. (The extra value goes to -0.)
+    dedicate one bit of the mantissa to the sign, negating the value when the bit is 1. (The extra value goes to -0.)
 </p>
 <floating-point-demo type="naive"></floating-point-demo>
 <h3>Actually ensuring uniqueness</h3>
