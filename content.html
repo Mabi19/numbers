@@ -271,23 +271,31 @@
 
 <h2>Extending the range further</h2>
 <p>
-    <ul>
-        <li>subnormals
-            <ul>
-                <li>instead of dedicating a value to 0, let's set the lowest exponent's leading digit to 0 but increase it by 1</li>
-                <li>this keeps the ability to write 0 and uniqueness, but now we can write much smaller numbers</li>
-                <li>(how small exactly?)</li>
-            </ul>
-        </li>
-        <li>infinities
-            <ul>
-                <li>a range from the maximum value to infinity would be useful</li>
-                <li>so let's dedicate a special value to it, like we did for zero initially</li>
-                <li>properties of a number that could be literally anywhere (but is very large)</li>
-            </ul>
-        </li>
-    </ul>
+    Our format is currently <em>not great</em> at representing small numbers.
+    Sure, we can store 0, but then we have a comparatively huge gap from anything else:
+    the smallest positive numbers in our format are 2^-127 + 2^-150, then 2^-127 + 2^-149.
+    That means that the second gap is only 0.000012% of the first one.
 </p>
+<p>
+    To rectify our small number issues, we can make the whole lowest exponent have its mantissa start with a 0
+    instead of just one specific value.
+    (We also need to increase it by 1 to not leave a hole where the 2^-127-sized numbers originally were).
+    Let's call these <em>subnormal numbers</em>.
+</p>
+<p>
+    The smallest representable positive numbers are now 2^-149, then 2 * 2^-149, 3 * 2^-149 and so on.
+    That means that not only do we have much more uniform gaps, but we even extended the range a little
+    (though at the cost of some precision).
+</p>
+<ul>
+    <li>infinities
+        <ul>
+            <li>a range from the maximum value to infinity would be useful</li>
+            <li>so let's dedicate a special value to it, like we did for zero initially</li>
+            <li>properties of a number that could be literally anywhere (but is very large)</li>
+        </ul>
+    </li>
+</ul>
 
 <h2>What about 0/0?</h2>
 <p>
