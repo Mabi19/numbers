@@ -208,7 +208,7 @@
     we need to use a signed format.
     <!-- TODO: illustrate this -->
     We could try doing two's complement again, but we wouldn't actually be able to take advantage of its benefits very well in this case.
-    Instead, let's just make it an unsigned integer and subtract 128 from it, as that would make the underlying implementation simpler.
+    Instead, let's just make it an unsigned integer and subtract 127 from it, as that would make the underlying implementation simpler.
 </p>
 <p>
     For the mantissa, let's just use the remaining 24 bits as a fixed-point number with 1 binary digit before the binary point.
