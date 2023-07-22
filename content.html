@@ -366,14 +366,108 @@
 
 <h2>Dealing with those question marks</h2>
 <p>
-    <ul>
-        <li>a small number we don't know exactly divided by another small number we don't know exactly could be literally anything</li>
-        <li>also, representing various kinds of errors (such as square roots of negative numbers) could be useful</li>
-        <li>let's dedicate the top exponent to these error (NaN) values, like we did for the subnormals</li>
-        <li>even weirder properties than the infinities, since this time it could truly be anything</li>
-        <li>we can also put the infinities in there</li>
-    </ul>
+    Since two infinities could have been a result of rounding numbers of very different magnitudes,
+    we can't assign any sensible value to
+    <math display="inline">
+        <mrow>
+            <mi>&infin;</mi><mo>-</mo><mi>&infin;</mi>
+        </mrow>
+    </math>.
+    Similarly,
+    <math display="inline">
+        <mrow>
+            <mi>&infin;</mi><mo>&sdot;</mo><mn>0</mn>
+        </mrow>
+    </math>
+    can't have a definite value assigned to it -
+    a very big number we don't know exactly times a very small number we don't know exactly could be
+    <em>literally anything</em>.
 </p>
+<p>
+    So, what should happen when a question-mark operation happens?
+    Well, first of all, an error should probably be raised somewhere.
+    However, some programs might not want to be interrupted when working with these kinds of values,
+    so we can't do much more than setting a flag in the processor.
+</p>
+<p>
+    But, since a question-mark operation can't suspend execution, it needs to return a value.
+    Let's call it "Not a Number", or NaN. Now, where do we put it?
+</p>
+<p>
+    Note that since there are several different operations that could produce NaNs,
+    it might be useful to tell what produced a NaN from the NaN itself.
+    In other words, we need to be able to attach extra data to a NaN.
+</p>
+<p>
+    Since we need to attach extra data to NaNs, let's dedicate an entire exponent to them, say, the highest one.
+    We'll need to relocate the infinities, so let's redefine them to be an all 0 mantissa with a maximum exponent
+    (and an arbitrary sign bit). All the other mantissa values can now correspond to NaNs.
+</p>
+<h3>Properties of an <em>even more</em> indeterminate value</h3>
+<p>
+    A NaN, similarly to an infinity, could theoretically be an actual number where
+    <em>all</em> of the information about it has been discarded. It could also be
+    something which isn't a real number at all, such as a square root of a negative number.
+    Therefore:
+</p>
+<ul>
+    <li>NaNs are contagious, like infinities
+        <ul>
+            <li>Pretty much all arithmetic operations involving a NaN will produce another NaN</li>
+            <li>
+                The only operations which will not output a NaN if a NaN is input are the ones that
+                produce the same value for all real numbers, e.g.:
+                <ul>
+                    <li>
+                        <math display="inline">
+                            <mrow><msup><mn>1</mn><mi>x</mi></msup></mrow>
+                        </math>
+                    </li>
+                    <li>
+                        <math display="inline">
+                            <mrow><msup><mi>x</mi><mn>0</mn></msup></mrow>
+                        </math>
+                    </li>
+                </ul>
+                These operations are defined to short-circuit and return the same value <em>for all inputs</em>.
+                (This means that some traditionally indeterminate forms have definite values in floating-point arithmetic.)
+            </li>
+        </ul>
+    </li>
+    <li>
+        All comparisons with NaNs return false
+        <ul>
+            <li>
+                This means that <math display="inline">
+                    <mrow>
+                        <mo>(</mo><mi>NaN</mi><mo>&NotEqual;</mo><mi>NaN</mi><mo>)</mo>
+                        <mo>=</mo><mi>false</mi>
+                    </mrow>
+                </math>,
+                which can be used as a test for whether you're dealing with one
+            </li>
+            <li>
+                False isn't explicitly meaningful here, but comparisons have to return a value
+                and false is marginally more convenient due to allowing for an easy NaN test
+            </li>
+        </ul>
+    </li>
+    <li>
+        NaNs can be set to be <em>signaling</em>
+        <ul>
+            <li>
+                When used in an arithmetic operation, a signaling NaN will set the invalid operation error flag
+                and the result will be a regular (quiet) NaN
+            </li>
+            <li>
+                This could, for example, be used for additional error-checking
+            </li>
+            <li>
+                In practice, signaling NaNs aren't very common
+            </li>
+        </ul>
+    </li>
+</ul>
 
 <hr>
 
