@@ -412,28 +412,10 @@
     Therefore:
 </p>
 <ul>
-    <li>NaNs are contagious, like infinities
-        <ul>
-            <li>Pretty much all arithmetic operations involving a NaN will produce another NaN</li>
-            <li>
-                The only operations which will not output a NaN if a NaN is input are the ones that
-                produce the same value for all real numbers, e.g.:
-                <ul>
-                    <li>
-                        <math display="inline">
-                            <mrow><msup><mn>1</mn><mi>x</mi></msup></mrow>
-                        </math>
-                    </li>
-                    <li>
-                        <math display="inline">
-                            <mrow><msup><mi>x</mi><mn>0</mn></msup></mrow>
-                        </math>
-                    </li>
-                </ul>
-                These operations are defined to short-circuit and return the same value <em>for all inputs</em>.
-                (This means that some traditionally indeterminate forms have definite values in floating-point arithmetic.)
-            </li>
-        </ul>
+    <li>
+        NaNs are contagious, like infinities - 
+        pretty much all arithmetic operations involving a NaN will produce another NaN,
+        since we can't derive a specific value from a lack of information
     </li>
     <li>
         All comparisons with NaNs return false
@@ -441,10 +423,10 @@
             <li>
                 This means that <math display="inline">
                     <mrow>
-                        <mo>(</mo><mi>NaN</mi><mo>&NotEqual;</mo><mi>NaN</mi><mo>)</mo>
+                        <mo>(</mo><mi>x</mi><mo>&NotEqual;</mo><mi>x</mi><mo>)</mo>
                         <mo>=</mo><mi>false</mi>
                     </mrow>
-                </math>,
+                </math> if and only if x is NaN,
                 which can be used as a test for whether you're dealing with one
             </li>
             <li>
@@ -454,7 +436,11 @@
         </ul>
     </li>
     <li>
-        NaNs can be set to be <em>signaling</em>
+        While generating a NaN will usually set an error flag, using it in operations does not do that
+    </li>
+    <li>
+        However, a NaN that emits an error when used could still be useful,
+        so let's add the option for NaNs to be <em>signaling</em>
         <ul>
             <li>
                 When used in an arithmetic operation, a signaling NaN will set the invalid operation error flag
@@ -472,21 +458,25 @@
 
 <floating-point-demo type="ieee754"></floating-point-demo>
 
+<!-- TODO: FP bit tricks? -->
+<!-- TODO: FP pitfalls? -->
+
 <hr>
 
-<h2>Conclusion</h2>
+<h2>Recap</h2>
 <p>
-    <ul>
-        <li>those are complete descriptions of how most modern computers store integers and floats</li>
-        <li>note that these formats come in a variety of sizes</li>
-        <li>these are also used as building blocks to make other funky formats
-            <ul>
-                <li>complex numbers (pair of floats)</li>
-                <li>rationals (numerator + denominator)</li>
-                <li>arbitrary-precision integers (size + data)</li>
-                <li>decimal numbers (digits 0-9 encoded as bits)</li>
-                <li>etc.</li>
-            </ul>
-        </li>
-    </ul>
+    We have now reinvented the three most common number formats used by modern computers:
+    unsigned integers, two's complement integers and IEEE 754 floating point numbers
+    (well, mostly - some details have been left out).
+</p>
+<p>
+    Note that these formats come in a variety of sizes - 8-bit, 16-bit, 32-bit and 64-bit integers are common,
+    and floats typically come in 32-bit and 64-bit (which has 11 bits of exponent and 54 bits of mantissa) varieties
+</p>
+<p>
+    Also, while integers and floats are what the processor works with directly, programs can use more complex number formats
+    made out of the basic ones, for example complex numbers are represented as a pair of floats,
+    arbitrary-precision integers are a big block of data interpreted as an integer in software
+    and decimal numbers have their digits represented with groups of bits
+    (which is useful if you're working with something inherently base-10 and don't want to lose precision, such as currency).
 </p>
