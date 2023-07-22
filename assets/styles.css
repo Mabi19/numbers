@@ -3,7 +3,9 @@
 /* math font */
 @font-face {
     font-family: "Latin Modern Math";
-    src: url("./latinmodern-math.otf");
+    src:
+        local("Latin Modern Math")
+        url("./latinmodern-math.otf");
 }
 
 *, *::after, *::before {
