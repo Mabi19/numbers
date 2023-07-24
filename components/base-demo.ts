@@ -1,5 +1,5 @@
-import { LitElement, html, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { LitElement, TemplateResult, html } from "lit";
+import { property } from "lit/decorators.js";
 import { uintToBits } from "./bits";
 import { bitStyles } from "./styles";
 
@@ -8,10 +8,15 @@ export interface BaseDemoOptions<Types extends string[]> {
     types: Types;
 }
 
+export interface BitElementsOptions {
+    offset?: number;
+    class?: string;
+}
+
 export function baseDemo<Types extends string[]>(options: BaseDemoOptions<Types>) {
     abstract class BaseDemo extends LitElement {
         @property()
-        type: Types[number];
+        type: Types[number] = options.types[0];
     
         static readonly bitsToNumberFuncs: { [T in Types[number]]: (bits: boolean[]) => number };
         static readonly BIT_COUNT = options.bits;
@@ -26,10 +31,15 @@ export function baseDemo<Types extends string[]>(options: BaseDemoOptions<Types>
             bitStyles
         ]
 
-        renderBits() {
-            return this.bits.map((val, idx) => html`
-                <div class="bit" @click="${() => this.toggleBit(idx)}">${val ? 1 : 0}</div>
+        makeBitElements(bits: boolean[], options: BitElementsOptions = {}): TemplateResult | TemplateResult[] {
+            const offset = options.offset ?? 0;
+            return bits.map((val, idx) => html`
+                <div class="bit ${options.class}" @click="${() => this.toggleBit(idx + offset)}">${val ? 1 : 0}</div>
             `)
+        }
+
+        renderBits() {
+            return this.makeBitElements(this.bits)
         }
     
         render() {
