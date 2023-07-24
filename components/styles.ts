@@ -12,7 +12,7 @@ export const bitStyles = css`
         background-color: lightgray;
     }
     
-    .bit.locked {
+    .bit.virtual {
         cursor: initial;
     }
 

@@ -40,8 +40,8 @@ export class MovingPointDemo extends LitElement {
             <div>
                 <div class="bits">
                     ${this.makeBitElements(fractionalPart, { extraClass: "blue" })}
-                    <div class="bit">.</div>
-                    ${this.makeBitElements(new Array(virtualZeroes).fill(false), { locked: true, extraClass: "gray" })}
+                    <div class="bit virtual">.</div>
+                    ${this.makeBitElements(new Array(virtualZeroes).fill(false), { locked: true, extraClass: "gray virtual" })}
                     ${this.makeBitElements(integerPart, { offset: fractionalPart.length, extraClass: "red"})}
                     ${this.makeBitElements(pointPart, { offset: integerPart.length + fractionalPart.length, extraClass: "green" })}
                 </div>

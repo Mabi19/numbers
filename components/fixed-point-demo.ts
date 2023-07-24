@@ -15,7 +15,7 @@ export class FixedPointDemo extends baseDemo({ bits: 32, types: ["fixed-point"] 
 
         return html`
             ${this.makeBitElements(fractionalPart, { offset: 0, class: "blue" })}
-            <div class="bit">.</div>
+            <div class="bit virtual">.</div>
             ${this.makeBitElements(integerPart, { offset: 16, class: "red" })}
         `
     }
