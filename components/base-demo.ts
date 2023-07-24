@@ -1,19 +1,20 @@
-import { LitElement, TemplateResult, html } from "lit";
+import { LitElement, TemplateResult, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { uintToBits } from "./bits";
 import { bitStyles } from "./styles";
 
-export interface BaseDemoOptions<Types extends string[]> {
-    bits: number;
-    types: Types;
+export interface BaseDemoOptions<Types extends readonly string[]> {
+    readonly bits: number;
+    readonly types: Types;
 }
 
 export interface BitElementsOptions {
     offset?: number;
     class?: string;
+    locked?: boolean;
 }
 
-export function baseDemo<Types extends string[]>(options: BaseDemoOptions<Types>) {
+export function baseDemo<const Types extends readonly string[]>(options: BaseDemoOptions<Types>) {
     abstract class BaseDemo extends LitElement {
         @property()
         type: Types[number] = options.types[0];
@@ -34,7 +35,10 @@ export function baseDemo<Types extends string[]>(options: BaseDemoOptions<Types>
         makeBitElements(bits: boolean[], options: BitElementsOptions = {}): TemplateResult | TemplateResult[] {
             const offset = options.offset ?? 0;
             return bits.map((val, idx) => html`
-                <div class="bit ${options.class}" @click="${() => this.toggleBit(idx + offset)}">${val ? 1 : 0}</div>
+                <div
+                    class="bit ${options.class} ${options.locked ? 'locked' : undefined}"
+                    @click=${!options.locked ? () => this.toggleBit(idx + offset) : nothing}
+                >${val ? 1 : 0}</div>
             `)
         }
 
