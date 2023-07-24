@@ -165,12 +165,12 @@
     after one zero bit.
 </p>
 <!-- TODO: find a better example value -->
-<moving-point-demo value="0x30005000"></moving-point-demo>
+<moving-point-demo value="0x30005000" type="simple"></moving-point-demo>
 <p>
     Also, since 5 bits give us more possible bit positions than there actually are with the remaining 27 value bits,
     we can use the remaining ones for <em>hypervalues</em>, by putting extra <em>virtual zeroes</em> to fill in the space.
 </p>
-<moving-point-demo value="0xe8000003" hypervalues></moving-point-demo>
+<moving-point-demo value="0xe8000003" type="hypervalues"></moving-point-demo>
 <p>
     However, even with this range extension, the format is still extremely wasteful - for example, you can write 0
     in 32 different ways as the point position does not matter.
