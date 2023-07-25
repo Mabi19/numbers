@@ -15,9 +15,6 @@ export class MovingPointDemo extends baseDemo({ bits: 32, types: ["simple", "hyp
         const integerPart = this.bits.slice(pointPosition, this.bits.length - MOVING_POINT_BITS);
         const fractionalPart = this.bits.slice(0, pointPosition);
 
-        console.log(integerPart.length, fractionalPart.length);
-
-
         return html`
             <div>
                 <div class="bits">
