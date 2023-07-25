@@ -1,38 +1,87 @@
-import { LitElement, html, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { CSSResult, css, html, nothing } from "lit";
+import { customElement } from "lit/decorators.js";
+import { baseDemo } from "./base-demo";
+import { splitFPBits } from "./bits";
 import { when } from "lit/directives/when.js";
-import { bitsToMovingPoint, MOVING_POINT_BITS, uintToBits } from "./bits";
-import { bitStyles } from "./styles";
+import { formatGenericNumber, formatMantissa } from "./number-formatting";
 
 @customElement("floating-point-demo")
-export class FloatingPointDemo extends LitElement {
-    @property({ converter: (str) => uintToBits(parseInt(str), 32), type: Array, attribute: "value" })
-    bits: boolean[] = uintToBits(0, 32);
-
-    @property({ type: String })
-    type: "naive" = "naive";
-
+export class FloatingPointDemo extends baseDemo({ bits: 32, types: ["naive" , "unique", "ieee754"] }) {
     static styles = [
-        bitStyles
-    ];
+        super.styles,
+        css`
+            .text-red {
+                color: red;
+            }
 
-    makeBitElements(bits: boolean[], options: Partial<{ offset: number, locked: boolean, extraClass: string}>) {
-        const offset = options.offset ?? 0;
+            .text-green {
+                color: green;
+            }
 
-        return bits.map((val, idx) => html`
-            <div
-                class="bit ${options.extraClass} ${options.locked ? 'locked' : undefined}"
-                @click=${!options.locked ? () => this._toggleBit(idx + offset) : nothing}
-            >${val ? 1 : 0}</div>
-        `)
+            .text-blue {
+                color: #0078f0;
+            }
+        `
+    ]
+
+    renderBits() {
+        return html`
+            ${this.makeBitElements(this.bits.slice(0, 22), { class: "blue" })}
+            ${this.type == "naive" ? html`<div class="bit virtual">.</div>` : nothing}
+            ${this.makeBitElements(this.bits.slice(22, 23), { offset: 22, class: "blue" })}
+            ${this.makeBitElements(this.bits.slice(23, 31), { offset: 23, class: "green" })}
+            ${this.makeBitElements(this.bits.slice(31), { offset: 31, class: "red" })}
+        `
     }
 
-    render() {
-        return html`<p>TODO: floating point demo (${this.type})</p>`
+    convertFPDataToNumber(data: ReturnType<typeof splitFPBits>) {
+        // check for 0 in unique format
+        if (this.type == "unique" && data.exponent == -127 && data.mantissa == 0) {
+            return { result: data.sign * 0, isSpecial: true }
+        }
+
+        if (this.type == "naive") {
+            data.mantissa /= (2 ** 22);
+        } else {
+            data.mantissa /= (2 ** 23);
+            data.mantissa += 1;
+        }
+
+        let result = data.sign * (2 ** data.exponent) * data.mantissa;
+
+        return { result, isSpecial: false }
     }
 
-    private _toggleBit(idx: number) {
-        this.bits[idx] = !this.bits[idx]
-        this.requestUpdate();
+    renderExtra() {
+        // the formats share so much in common that combining the logic is simplest
+        const data = splitFPBits(this.bits);
+
+        const { result, isSpecial } = this.convertFPDataToNumber(data);
+
+        return html`
+            value: ${formatGenericNumber(result)}
+            ${when(isSpecial,
+                () => html`
+                    (special)
+                `,
+                () => html`
+                    (<math display="inline">
+                        <mrow>
+                            <mn>${formatGenericNumber(data.sign)}</mn>
+                            <mo>&sdot;</mo>
+                            <msup>
+                                <mn>2</mn>
+                                <mrow>
+                                    <mn>${data.exponent}</mn>
+                                </mrow>
+                            </msup>
+                            <mo>&sdot;</mo>
+                            <mn>${formatMantissa(data.mantissa)}</mn>
+                        </mrow>
+                    </math>)
+                `
+            )}
+            
+        `
     }
 }

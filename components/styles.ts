@@ -1,6 +1,11 @@
 import { css } from "lit";
 
 export const bitStyles = css`
+    math {
+        font-family: "Latin Modern Math";
+        font-size: 1.075em;
+    }
+
     .bits {
         display: flex;
         flex-flow: row-reverse nowrap;

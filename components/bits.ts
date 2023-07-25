@@ -64,3 +64,16 @@ export function bitsToMovingPoint(bits: boolean[]) {
 
     return { pointPosition, virtualZeroes, value: rawValue / (2 ** (27 - rawPointPosition)) }
 }
+
+
+export function splitFPBits(bits: boolean[]) {
+    if (bits.length != 32) throw new TypeError("Floating point format must use 32 bits");
+
+    // the mantissa's interpretation changes depending on the mode,
+    // so we can't return it in fixed point directly
+    return {
+        sign: bits[31] ? -1 : 1,
+        exponent: bitsToUInt(bits.slice(23, 31)) - 127,
+        mantissa: bitsToUInt(bits.slice(0, 23)),
+    }
+}
