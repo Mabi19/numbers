@@ -3,6 +3,7 @@ import { customElement } from "lit/decorators.js";
 import { when } from "lit/directives/when.js";
 import { bitsToMovingPoint, MOVING_POINT_BITS } from "./bits";
 import { baseDemo } from "./base-demo";
+import { formatGenericNumber } from "./number-formatting";
 
 @customElement("moving-point-demo")
 export class MovingPointDemo extends baseDemo({ bits: 32, types: ["simple", "hypervalues"] }) {
@@ -28,7 +29,7 @@ export class MovingPointDemo extends baseDemo({ bits: 32, types: ["simple", "hyp
                 </div>
                 value:
                 ${when(virtualZeroes == 0 || this.type == "hypervalues",
-                    () => html`${numValue}`,
+                    () => html`${formatGenericNumber(numValue)}`,
                     () => html`?`
                 )}
             </div>

@@ -2,6 +2,7 @@ import { LitElement, TemplateResult, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { uintToBits } from "./bits";
 import { bitStyles } from "./styles";
+import { formatGenericNumber } from "./number-formatting";
 
 export interface BaseDemoOptions<Types extends readonly string[]> {
     readonly bits: number;
@@ -28,7 +29,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
         @property({ type: Boolean })
         locked: boolean = false;
     
-        static styles = [
+        static styles: any[] = [
             bitStyles
         ]
 
@@ -45,16 +46,19 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
         renderBits() {
             return this.makeBitElements(this.bits)
         }
+
+        renderExtra() {
+            const numValue = (this.constructor as typeof BaseDemo).bitsToNumberFuncs[this.type](this.bits);
+            return html`value: ${formatGenericNumber(numValue)}`
+        }
     
         render() {
-            const numValue = (this.constructor as typeof BaseDemo).bitsToNumberFuncs[this.type](this.bits);
-    
             return html`
                 <div>
                     <div class="bits ${this.locked ? 'locked' : undefined}">
                         ${this.renderBits()}
                     </div>
-                    value: ${numValue}
+                    ${this.renderExtra()}
                 </div>
             `;
         }
