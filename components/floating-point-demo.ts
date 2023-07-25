@@ -1,4 +1,4 @@
-import { CSSResult, css, html, nothing } from "lit";
+import { css, html, nothing } from "lit";
 import { customElement } from "lit/decorators.js";
 import { baseDemo } from "./base-demo";
 import { splitFPBits } from "./bits";
@@ -6,7 +6,7 @@ import { when } from "lit/directives/when.js";
 import { formatGenericNumber, formatMantissa } from "./number-formatting";
 
 @customElement("floating-point-demo")
-export class FloatingPointDemo extends baseDemo({ bits: 32, types: ["naive" , "unique", "ieee754"] }) {
+export class FloatingPointDemo extends baseDemo({ bits: 32, types: ["naive" , "unique", "subnormals", "ieee754"] }) {
     static styles = [
         super.styles,
         css`
