@@ -22,10 +22,15 @@
 
 body {
     font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.3;
+    line-height: 1.4;
+    color: #333;
 
     width: 100%;
     margin: 0;
+}
+
+h1, h2, h3 {
+    line-height: 1;
 }
 
 .content {
