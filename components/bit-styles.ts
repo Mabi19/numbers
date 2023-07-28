@@ -30,10 +30,6 @@ export const bitStyles = css`
         gap: 3px;
         width: max-content;
     }
-
-    .bits.locked {
-        background-color: lightgray;
-    }
     
     .bit.virtual {
         cursor: initial;

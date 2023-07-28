@@ -37,7 +37,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
             const offset = options.offset ?? 0;
             return bits.map((val, idx) => html`
                 <div
-                    class="bit ${options.class} ${options.locked ? 'locked' : undefined}"
+                    class="bit ${options.class} ${(this.locked || options.locked) ? 'locked' : undefined}"
                     @click=${!options.locked ? () => this.toggleBit(idx + offset) : nothing}
                 >${val ? 1 : 0}</div>
             `)
@@ -54,6 +54,8 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
     
         render() {
             return html`
+                <!-- TODO: lock icon when demo is locked -->
+                <!-- TODO: value presets -->
                 <div class="demo">
                     <div class="bits ${this.locked ? 'locked' : undefined}">
                         ${this.renderBits()}
