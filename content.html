@@ -52,7 +52,7 @@
                 <mn>2</mn>
                 <mn>8</mn>
             </msup>
-            <mo>-</mo>
+            <mo>&minus;</mo>
             <mn>1</mn>
         </mrow>
     </math>).
@@ -281,17 +281,79 @@
 <p>
     Our format is currently <em>not great</em> at representing small numbers.
     Sure, we can store 0, but then we have a comparatively huge gap from anything else:
-    the smallest positive numbers in our format are 2^-127 + 2^-150, then 2^-127 + 2^-149.
+    the smallest positive numbers in our format are
+    <math display="inline">
+        <mrow>
+            <msup>
+                <mn>2</mn>
+                <mn>&minus;127</mn>
+            </msup>
+            <mo>+</mo>
+            <msup>
+                <mn>2</mn>
+                <mn>&minus;150</mn>
+            </msup>
+        </mrow>
+    </math>, then 
+    <math display="inline">
+        <mrow>
+            <msup>
+                <mn>2</mn>
+                <mn>&minus;127</mn>
+            </msup>
+            <mo>+</mo>
+            <msup>
+                <mn>2</mn>
+                <mn>&minus;149</mn>
+            </msup>
+        </mrow>
+    </math>.
     That means that the second gap is only 0.000012% of the first one.
 </p>
 <p>
     To rectify our small number issues, we can make the whole lowest exponent have its mantissa start with a 0
     instead of just one specific value.
-    (We also need to increase it by 1 to not leave a hole where the 2^-127-sized numbers originally were).
+    (We also need to increase it by 1 to not leave a hole where the
+    <math display="inline">
+        <mrow>
+            <msup>
+                <mn>2</mn>
+                <mn>&minus;127</mn>
+            </msup>
+        </mrow>
+    </math>-sized numbers originally were).
     Let's call these <em>subnormal numbers</em>.
 </p>
 <p>
-    The smallest representable positive numbers are now 2^-149, then 2 * 2^-149, 3 * 2^-149 and so on.
+    The smallest representable positive numbers are now
+    <math display="inline">
+        <mrow>
+            <msup>
+                <mn>2</mn>
+                <mn>&minus;149</mn>
+            </msup>
+        </mrow>
+    </math>, then
+    <math display="inline">
+        <mrow>
+            <mn>2</mn>
+            <mo>&sdot;</mo>
+            <msup>
+                <mn>2</mn>
+                <mn>&minus;149</mn>
+            </msup>
+        </mrow>
+    </math>,
+    <math display="inline">
+        <mrow>
+            <mn>3</mn>
+            <mo>&sdot;</mo>
+            <msup>
+                <mn>2</mn>
+                <mn>&minus;149</mn>
+            </msup>
+        </mrow>
+    </math> and so on.
     That means that not only do we have much more uniform gaps, but we even extended the range a little
     (though at the cost of some precision).
 </p>
@@ -330,7 +392,7 @@
     <li>
         <math display="inline">
             <mrow>
-                <mi>&infin;</mi><mo>&sdot;</mo><mo>(</mo><mn>-2</mn><mo>)</mo><mo>=</mo><mi>-&infin;</mi>
+                <mi>&infin;</mi><mo>&sdot;</mo><mo>(</mo><mn>&minus;2</mn><mo>)</mo><mo>=</mo><mi>&minus;&infin;</mi>
             </mrow>
         </math>
     </li>
@@ -351,7 +413,7 @@
     <li>
         <math display="inline">
             <mrow>
-                <mi>&infin;</mi><mo>-</mo><mi>&infin;</mi><mo>=</mo><mi>?</mi>
+                <mi>&infin;</mi><mo>&minus;</mo><mi>&infin;</mi><mo>=</mo><mi>?</mi>
             </mrow>
         </math>
     </li>
@@ -374,7 +436,7 @@
     we can't assign any sensible value to
     <math display="inline">
         <mrow>
-            <mi>&infin;</mi><mo>-</mo><mi>&infin;</mi>
+            <mi>&infin;</mi><mo>&minus;</mo><mi>&infin;</mi>
         </mrow>
     </math>.
     Similarly,
