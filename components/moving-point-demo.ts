@@ -16,7 +16,7 @@ export class MovingPointDemo extends baseDemo({ bits: 32, types: ["simple", "hyp
         const fractionalPart = this.bits.slice(0, pointPosition);
 
         return html`
-            <div>
+            <div class="demo">
                 <div class="bits">
                     ${this.makeBitElements(fractionalPart, { class: "blue" })}
                     <div class="bit virtual">.</div>

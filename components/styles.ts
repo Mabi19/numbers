@@ -6,10 +6,26 @@ export const bitStyles = css`
         font-size: 1.075em;
     }
 
+    .demo {
+        margin: 4px 0;
+        padding: 8px;
+        border: 1px solid black;
+        border-radius: 8px;
+
+        background-color: #fefefe;
+
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 4px;
+
+        overflow-x: auto;
+    }
+
     .bits {
         display: flex;
         flex-flow: row-reverse nowrap;
-        gap: 2px;
+        align-items: flex-start;
+        gap: 3px;
         width: max-content;
     }
 
@@ -19,28 +35,42 @@ export const bitStyles = css`
     
     .bit.virtual {
         cursor: initial;
+        border: none;
+        --bit-bg: transparent;
+        background-color: var(--bit-bg);
+    }
+
+    .bit.locked {
+        cursor: not-allowed;
     }
 
     .bit {
         font-size: 1.125em;
-        padding: 0 1px;
+        padding: 1px;
         user-select: none;
         cursor: pointer;
+
+        --bit-color: black;
+        border-bottom: 3px solid var(--bit-color);
     }
 
     .bit.red {
-        background-color: pink;
+        --bit-bg: pink;
+        --bit-color: tomato;
     }
 
     .bit.green {
-        background-color: lightgreen;
+        --bit-bg: lightgreen;
+        --bit-color: #22af22;
     }
 
     .bit.blue {
-        background-color: lightblue;
+        --bit-bg: lightblue;
+        --bit-color: dodgerblue;
     }
 
     .bit.gray {
-        background-color: #ddd;
+        --bit-bg: #ddd;
+        --bit-color: #444;
     }
 `;

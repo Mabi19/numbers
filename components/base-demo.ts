@@ -54,11 +54,13 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
     
         render() {
             return html`
-                <div>
+                <div class="demo">
                     <div class="bits ${this.locked ? 'locked' : undefined}">
                         ${this.renderBits()}
                     </div>
-                    ${this.renderExtra()}
+                    <div class="extra">
+                        ${this.renderExtra()}
+                    </div>
                 </div>
             `;
         }
