@@ -31,10 +31,10 @@ dt {
 }
 
 math {
-    font-family: "Latin Modern Math";
+    font-family: "Latin Modern Math", "Cambria Math";
     font-size: 1.075em;
 }
 
 code {
-    font-family: "Cascadia Code";
+    font-family: "Cascadia Code", monospace;
 }

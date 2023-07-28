@@ -2,7 +2,7 @@ import { css } from "lit";
 
 export const bitStyles = css`
     math {
-        font-family: "Latin Modern Math";
+        font-family: "Latin Modern Math", "Cambria Math";
         font-size: 1.075em;
     }
 
