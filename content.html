@@ -341,9 +341,9 @@
     <li>
         <math display="inline">
             <mrow>
-                <mi>&infin;</mi><mo>&gt;</mo><mn>2</mn><mo>=</mo><mi>true</mi>
+                <mi>&infin;</mi><mo>&gt;</mo><mn>2</mn>
             </mrow>
-        </math>
+        </math> is <code>true</code>
     </li>
     <li>
         <math display="inline">
@@ -418,20 +418,19 @@
         since we can't derive a specific value from a lack of information
     </li>
     <li>
-        All comparisons with NaNs return false
+        All comparisons with NaNs return <code>false</code>
         <ul>
             <li>
                 This means that <math display="inline">
                     <mrow>
-                        <mo>(</mo><mi>x</mi><mo>&NotEqual;</mo><mi>x</mi><mo>)</mo>
-                        <mo>=</mo><mi>false</mi>
+                        <mi>x</mi><mo>=</mo><mi>x</mi>
                     </mrow>
-                </math> if and only if x is NaN,
+                </math> is <code>false</code> if and only if x is NaN,
                 which can be used as a test for whether you're dealing with one
             </li>
             <li>
-                False isn't explicitly meaningful here, but comparisons have to return a value
-                and false is marginally more convenient due to allowing for an easy NaN test
+                <code>false</code> isn't explicitly meaningful here, but comparisons have to return a value
+                and <code>false</code> is marginally more convenient due to allowing for an easy NaN test
             </li>
         </ul>
     </li>
