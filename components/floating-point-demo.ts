@@ -44,7 +44,13 @@ export class FloatingPointDemo extends baseDemo({ bits: 32, types: ["naive" , "u
             data.mantissa /= (2 ** 22);
         } else {
             data.mantissa /= (2 ** 23);
-            data.mantissa += 1;
+
+            // subnormals: on lowest exponent, increase it by one but leave out the mantissa's starting 1
+            if ((this.type == "subnormals" || this.type == "ieee754") && data.exponent == -127) {
+                data.exponent = -126;
+            } else {
+                data.mantissa += 1;
+            }
         }
 
         let result = data.sign * (2 ** data.exponent) * data.mantissa;
