@@ -19,6 +19,9 @@ export const bitStyles = css`
         gap: 4px;
 
         overflow-x: auto;
+
+        width: max-content;
+        margin: auto;
     }
 
     .bits {
