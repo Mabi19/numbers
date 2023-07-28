@@ -22,6 +22,8 @@ export const bitStyles = css`
     }
 
     .bit {
+        font-size: 1.125em;
+        padding: 0 1px;
         user-select: none;
         cursor: pointer;
     }
