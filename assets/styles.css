@@ -64,3 +64,11 @@ a:visited {
 a:active {
     color: rgb(243, 66, 22);
 }
+
+hr {
+    width: 100%;
+    border: none;
+    border-bottom: 2px dashed #333;
+
+    margin: 24px 0;
+}
