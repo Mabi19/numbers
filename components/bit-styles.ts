@@ -21,7 +21,6 @@ export const bitStyles = css`
         overflow-x: auto;
 
         width: max-content;
-        margin: auto;
     }
 
     .bits {
