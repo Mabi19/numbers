@@ -1,7 +1,7 @@
 import { LitElement, TemplateResult, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { uintToBits } from "./bits";
-import { bitStyles } from "./styles";
+import { bitStyles } from "./bit-styles";
 import { formatGenericNumber } from "./number-formatting";
 
 export interface BaseDemoOptions<Types extends readonly string[]> {
