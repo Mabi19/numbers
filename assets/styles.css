@@ -8,6 +8,14 @@
         url("./latinmodern-math.otf");
 }
 
+/* code font */
+@font-face {
+    font-family: "Cascadia Code";
+    src:
+        local("Cascadia Code"),
+        url("./CascadiaCode.woff2");
+}
+
 *, *::after, *::before {
     box-sizing: border-box;
 }
@@ -25,4 +33,8 @@ dt {
 math {
     font-family: "Latin Modern Math";
     font-size: 1.075em;
+}
+
+code {
+    font-family: "Cascadia Code";
 }
