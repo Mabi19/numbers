@@ -38,6 +38,17 @@ export class FloatingPointDemo extends baseDemo({
     }
 
     convertFPDataToNumber(data: ReturnType<typeof splitFPBits>) {
+        // check for top exponent in full format
+        if (this.type == "ieee754" && data.exponent == 128) {
+            let result: number;
+            if (data.mantissa == 0) {
+                result = data.sign * Infinity;
+            } else {
+                result = NaN;
+            }
+            return { result, isSpecial: true }
+        }
+
         // check for 0 in unique format
         if (this.type == "unique" && data.exponent == -127 && data.mantissa == 0) {
             return { result: data.sign * 0, isSpecial: true }
