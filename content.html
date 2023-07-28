@@ -300,30 +300,21 @@
     For example, since zero could actually be any number close to 0, dividing by it
     <em>would result in an actual value</em>! We can't know it exactly (since we threw away that precision),
     so it would just result in the too-big sentinel.
+    This means that it effectively covers the part of the number line from the (new) largest regular value all the way to &infin;.
 </p>
 <p>
-    So, let's dedicate the largest regular value to the too-big sentinel,
-    which effectively covers the part of the number line from the (new) largest regular value all the way to infinity.
-    Since our format is symmetric we'll also define -Infinity to have the same bit pattern as the positive one
-    except with the sign bit being 1.
+    So, let's dedicate the current largest regular value's bit pattern to it!
+    Since our format is symmetric we'll also define a negative counterpart to have the same bit pattern as the positive one
+    except with the sign bit being 1.    
 </p>
+<floating-point-demo type="large-sentinel" value="0x7fffffff"></floating-point-demo>
 <h3>Properties of an indeterminate value</h3>
 <p>
-    Since the infinities cover infinitely large parts of the number line, the numbers they represent could be pretty much anywhere.
-    So, how does math work when &pm;&infin; is involved? Well, in practice, it only really makes sense to give
-    it the same properties that &infin; (or specifically <math display="inline">
-        <mrow>
-            <munder>
-                <mo>lim</mo>
-                <mrow>
-                    <mi>x</mi>
-                    <mo>&rightarrow;</mo>
-                    <mi>&infin;</mi>
-                </mrow>
-            </munder>
-            <mi>x</mi>
-        </mrow>
-    </math>) has, namely that it's contagious - most operations involving infinities will result in another infinity:
+    Since the our new values cover infinitely large parts of the number line, the numbers they represent could be pretty much anywhere.
+    So, how does math work with a number that we only know is very large?
+    Well, in practice, it only really makes sense to give it the same properties that &infin;
+    (or, more precisely, a limit that diverges to &infin;) has traditionally,
+    namely that it's contagious - most operations involving infinities will result in another infinity:
 </p>
 <ul>
     <li>
@@ -350,7 +341,7 @@
     <li>
         <math display="inline">
             <mrow>
-                <mi>&infin;</mi><mo>></mo><mn>2</mn><mo>=</mo><mi>true</mi>
+                <mi>&infin;</mi><mo>&gt;</mo><mn>2</mn><mo>=</mo><mi>true</mi>
             </mrow>
         </math>
     </li>
@@ -369,6 +360,10 @@
         </math>
     </li>
 </ul>
+<p>
+    Since our new value behaves like an infinity, it would make sense to call it that as well.
+</p>
+<floating-point-demo type="infinities" value="0xffffffff"></floating-point-demo>
 
 <h2>Dealing with those question marks</h2>
 <p>

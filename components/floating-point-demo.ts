@@ -6,7 +6,10 @@ import { when } from "lit/directives/when.js";
 import { formatGenericNumber, formatMantissa } from "./number-formatting";
 
 @customElement("floating-point-demo")
-export class FloatingPointDemo extends baseDemo({ bits: 32, types: ["naive" , "unique", "subnormals", "ieee754"] }) {
+export class FloatingPointDemo extends baseDemo({
+    bits: 32,
+    types: ["naive" , "unique", "subnormals", "large-sentinel", "infinities", "ieee754"]
+}) {
     static styles = [
         super.styles,
         css`
@@ -39,6 +42,10 @@ export class FloatingPointDemo extends baseDemo({ bits: 32, types: ["naive" , "u
         if (this.type == "unique" && data.exponent == -127 && data.mantissa == 0) {
             return { result: data.sign * 0, isSpecial: true }
         }
+        // check for infinities in the naive infinities formats
+        if ((this.type == "large-sentinel" || this.type == "infinities") && data.exponent == 128 && data.mantissa == 0x7fffff) {
+            return { result: data.sign * Infinity, isSpecial: true }
+        }
 
         if (this.type == "naive") {
             data.mantissa /= (2 ** 22);
@@ -46,7 +53,7 @@ export class FloatingPointDemo extends baseDemo({ bits: 32, types: ["naive" , "u
             data.mantissa /= (2 ** 23);
 
             // subnormals: on lowest exponent, increase it by one but leave out the mantissa's starting 1
-            if ((this.type == "subnormals" || this.type == "ieee754") && data.exponent == -127) {
+            if (["subnormals", "large-sentinel", "infinities", "ieee754"].includes(this.type) && data.exponent == -127) {
                 data.exponent = -126;
             } else {
                 data.mantissa += 1;
@@ -63,6 +70,12 @@ export class FloatingPointDemo extends baseDemo({ bits: 32, types: ["naive" , "u
         const data = splitFPBits(this.bits);
 
         const { result, isSpecial } = this.convertFPDataToNumber(data);
+
+        // display a placeholder when the too-large sentinel hasn't been named yet
+        if (this.type == "large-sentinel" && isSpecial) {
+            // +/-inf is the only special value in this mode
+            return html`value: ${when(result < 0, () => html`&#x2212`)}[too large] (special)`;
+        }
 
         return html`
             value: ${formatGenericNumber(result)}
