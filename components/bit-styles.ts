@@ -49,7 +49,7 @@ export const bitStyles = css`
         user-select: none;
         cursor: pointer;
 
-        --bit-color: black;
+        --bit-color: #333;
         border-bottom: 3px solid var(--bit-color);
     }
 
