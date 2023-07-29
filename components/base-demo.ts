@@ -43,8 +43,6 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
         @state()
         private valueAsUInt: number;
 
-        @state()
-        private idToken: string;
     
         static styles: any[] = [
             bitStyles,
@@ -53,7 +51,6 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
 
         constructor() {
             super();
-            this.idToken = Math.trunc(Math.random() * 0x100000).toString(16);
 
             console.log(this.childNodes);
             this.presets = Array.from(this.childNodes)

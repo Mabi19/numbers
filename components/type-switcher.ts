@@ -14,9 +14,6 @@ export class TypeSwitcher extends LitElement {
     selected?: string;
 
     @state()
-    private idToken: string;
-
-    @state()
     private targetElement: HTMLElement;
 
     static styles = [
@@ -25,7 +22,6 @@ export class TypeSwitcher extends LitElement {
 
     constructor() {
         super();
-        this.idToken = Math.trunc(Math.random() * 0x100000).toString(16);
     }
 
     connectedCallback() {
@@ -46,13 +42,13 @@ export class TypeSwitcher extends LitElement {
                 ${this.types.map((type) => html`
                     <input
                         type="radio"
-                        name="ts-${this.idToken}"
-                        id="ts-${this.idToken}-${type.id}"
+                        name="type-switcher"
+                        id="ts-${type.id}"
                         value=${type.id}
                         ?checked=${type.id == this.selected}
                         @change=${() => this.select(type.id)}
                     >
-                    <label for="ts-${this.idToken}-${type.id}">${type.name}</label>
+                    <label for="ts-${type.id}">${type.name}</label>
                 `)}
             </div>
         `;
