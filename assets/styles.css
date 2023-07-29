@@ -33,6 +33,10 @@ h1, h2, h3 {
     line-height: 1;
 }
 
+p {
+    margin: 12px 0;
+}
+
 .content {
     margin: 8px;
     width: 650px;
@@ -71,6 +75,54 @@ hr {
     border-bottom: 2px dashed #333;
 
     margin: 24px 0;
+}
+
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    border: 1px solid black;
+
+    margin: 12px 0;
+}
+
+caption {
+    text-decoration: underline;
+}
+
+th {
+    border: 1px solid black !important;
+    background-color: rgb(81, 100, 117);
+    color: whitesmoke;
+}
+
+th, td {
+    padding: 4px 8px;
+}
+
+td:first-child {
+    text-align: right;
+}
+
+td {
+    text-align: center;
+    border: 1px solid darkgray;
+}
+
+td[colspan] {
+    text-align: center !important;
+}
+
+td:last-child {
+    text-align: left;
+}
+
+tr:nth-child(2n) {
+    background-color: whitesmoke;
+}
+
+tr:nth-child(2n+1) {
+    background-color: rgb(212, 219, 226);
 }
 
 .note {

@@ -260,6 +260,48 @@
     Therefore, since we can't use the extra value effectively, let's just waste it in the simplest way possible:
     dedicate one bit of the mantissa to the sign, negating the value when the bit is 1. (The extra value goes to -0.)
 </p>
+<table>
+    <caption>
+        Exponent bit patterns
+    </caption>
+    <thead>
+        <tr>
+            <th>Bit pattern</th>
+            <th>Meaning</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>11111111</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>128</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>11111110</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>127</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>11111101</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>126</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td colspan="2">&vellip;</td>
+        </tr>
+        <tr>
+            <td>00000010</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-125</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>00000001</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>00000000</td>
+            <td>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>-127</mn></msup></mrow></math>
+            </td>
+        </tr>
+    </tbody>
+</table>
 <floating-point-demo type="naive" value="0x40f00000"></floating-point-demo>
 <h3>Actually ensuring uniqueness</h3>
 <p>
@@ -277,7 +319,49 @@
     Thus, we can't write it anymore. So, let's just set the all zeroes (except for possibly the sign bit)
     bit pattern to represent &pm;0.
 </p>
-<!-- TODO: exponent table? -->
+<table>
+    <caption>
+        Exponent bit patterns
+    </caption>
+    <thead>
+        <tr>
+            <th>Bit pattern</th>
+            <th>Meaning</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>11111111</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>128</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>11111110</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>127</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>11111101</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>126</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td colspan="2">&vellip;</td>
+        </tr>
+        <tr>
+            <td>00000010</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-125</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>00000001</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>00000000</td>
+            <td>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>-127</mn></msup></mrow></math>
+                & special case: 0
+            </td>
+        </tr>
+    </tbody>
+</table>
 <floating-point-demo type="unique" value="0"></floating-point-demo>
 
 <h2>Handling math with varying precision</h2>
@@ -380,6 +464,49 @@
     That means that not only do we have much more uniform gaps, but we even extended the range a little
     (though at the cost of some precision).
 </p>
+<table>
+    <caption>
+        Exponent bit patterns
+    </caption>
+    <thead>
+        <tr>
+            <th>Bit pattern</th>
+            <th>Meaning</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>11111111</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>128</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>11111110</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>127</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>11111101</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>126</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td colspan="2">&vellip;</td>
+        </tr>
+        <tr>
+            <td>00000010</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-125</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>00000001</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>00000000</td>
+            <td>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math>
+                (subnormals)
+            </td>
+        </tr>
+    </tbody>
+</table>
 <floating-point-demo type="subnormals" value="0x3f800000"></floating-point-demo>
 
 <h2>Extending the range further</h2>
@@ -451,6 +578,52 @@
 <p>
     Since our new value behaves like an infinity, it would make sense to call it that as well.
 </p>
+<table>
+    <caption>
+        Exponent bit patterns
+    </caption>
+    <thead>
+        <tr>
+            <th>Bit pattern</th>
+            <th>Meaning</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>11111111</td>
+            <td>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>128</mn></msup></mrow></math>
+                & special case: infinities
+            </td>
+        </tr>
+        <tr>
+            <td>11111110</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>127</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>11111101</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>126</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td colspan="2">&vellip;</td>
+        </tr>
+        <tr>
+            <td>00000010</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-125</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>00000001</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>00000000</td>
+            <td>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math>
+                (subnormals)
+            </td>
+        </tr>
+    </tbody>
+</table>
 <floating-point-demo type="infinities" value="0xffffffff"></floating-point-demo>
 
 <h2>Dealing with those question marks</h2>
@@ -542,7 +715,51 @@
         </ul>
     </li>
 </ul>
-
+<table>
+    <caption>
+        Exponent bit patterns
+    </caption>
+    <thead>
+        <tr>
+            <th>Bit pattern</th>
+            <th>Meaning</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>11111111</td>
+            <td>
+                Infinities and NaNs
+            </td>
+        </tr>
+        <tr>
+            <td>11111110</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>127</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>11111101</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>126</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td colspan="2">&vellip;</td>
+        </tr>
+        <tr>
+            <td>00000010</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-125</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>00000001</td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math></td>
+        </tr>
+        <tr>
+            <td>00000000</td>
+            <td>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math>
+                (subnormals)
+            </td>
+        </tr>
+    </tbody>
+</table>
 <floating-point-demo type="ieee754"></floating-point-demo>
 
 <!-- TODO: FP bit tricks? -->
