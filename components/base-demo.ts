@@ -52,7 +52,6 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
         constructor() {
             super();
 
-            console.log(this.childNodes);
             this.presets = Array.from(this.childNodes)
                 .filter((node) => node.nodeType == Node.ELEMENT_NODE)
                 .map((elem: HTMLTemplateElement) => ({
@@ -124,7 +123,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
         protected toggleBit(idx: number) {
             if (!this.locked) {
                 this.bits[idx] = !this.bits[idx];
-                this.requestUpdate();
+                this.requestUpdate("bits");
             }
         }
     }
