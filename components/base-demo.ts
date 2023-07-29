@@ -87,7 +87,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
             // because they need to be deselected at will
             // (and deselecting radio buttons makes them do weird things)
             return html`
-                <div class="radio-box" role="radiogroup">
+                <div class="radio-box" role="radiogroup" aria-label="Preset">
                     ${this.presets.map((preset, idx) => html`
                         <input
                             type="checkbox"
