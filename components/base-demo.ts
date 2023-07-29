@@ -17,7 +17,7 @@ export interface BitElementsOptions {
 }
 
 interface Preset {
-    name: string;
+    name: DocumentFragment;
     value: number;
 }
 
@@ -56,7 +56,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
                 .filter((node) => node.nodeType == Node.ELEMENT_NODE)
                 .map((elem: HTMLTemplateElement) => ({
                     value: parseInt(elem.dataset.value),
-                    name: elem.content.textContent
+                    name: elem.content,
                 }));
         }
 
@@ -94,7 +94,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
                             role="radio"
                             name="preset"
                             id="preset-${idx}"
-                            value=${preset.name}
+                            value=${preset.name.textContent}
                             ?checked=${preset.value == this.valueAsUInt}
                             @change=${() => this.setPreset(idx)}
                         >

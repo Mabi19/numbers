@@ -23,7 +23,8 @@
 <h2>The goal</h2>
 <p>
     First, we need to find what traits a good number format has, and thus we should be aiming for.
-    Here are the ones modern computers optimize for:
+    These could be anything, but here are some of the ones I think are important
+    (and, <em>coincidentally</em>, modern computers optimize for):
 </p>
 <dl>
     <dt>Usefulness in real programs</dt>
@@ -135,7 +136,12 @@
     It turns out that the answer is yes! There are several ways to achieve this,
     but by far the most common approach is making the most significant bit subtract 128 from the total instead of adding it.
 </p>
-<integer-demo type="twos-complement" value="0xfd" id="twoc-switching-demo"></integer-demo>
+<integer-demo type="twos-complement" value="0xf4" id="twoc-switching-demo">
+    <template data-value="0x80">-128</template>
+    <template data-value="0xfd">-3</template>
+    <template data-value="0x3">3</template>
+    <template data-value="0x7f">127</template>
+</integer-demo>
 <p>
     Remember that "unsigned integer" and "two's complement" are just ways of interpreting a collection of bits.
     Because all the relevant bit patterns match, we can convert for free by just changing how we're interpreting the data.
@@ -206,7 +212,10 @@
     Also, since 5 bits give us more possible bit positions than there actually are with the remaining 27 value bits,
     we can use the remaining ones for <em>hypervalues</em>, by putting extra <em>virtual zeroes</em> to fill in the space.
 </p>
-<moving-point-demo value="0xe8000003" type="hypervalues"></moving-point-demo>
+<moving-point-demo value="0xe8000003" type="hypervalues">
+    <template data-value="0xe3962028">120,340,560</template>
+    <template data-value="0xfd9682f0">1.5 billion</template>
+</moving-point-demo>
 <p>
     However, even with this range extension, the format is still extremely wasteful - for example, you can write 0
     in 32 different ways as the point position does not matter.
@@ -520,7 +529,20 @@
         </tr>
     </tbody>
 </table>
-<floating-point-demo type="subnormals" value="0x3f800000"></floating-point-demo>
+<floating-point-demo type="subnormals" value="0x3f800000">
+    <template data-value="0">0</template>
+    <template data-value="0x000116c3">
+        <math display="inline">
+            <mrow>
+                <msup>
+                    <mn>10</mn>
+                    <mn>-40</mn>
+                </msup>
+            </mrow>
+        </math>
+    </template>
+    <template data-value="0x0000001">smallest representable value</template>
+</floating-point-demo>
 
 <h2>Extending the range further</h2>
 <p>
@@ -773,7 +795,14 @@
         </tr>
     </tbody>
 </table>
-<floating-point-demo type="ieee754"></floating-point-demo>
+<floating-point-demo type="ieee754">
+    <template data-value="0">0</template>
+    <template data-value="0x14c59342">mass of a carbon atom (kg)</template>
+    <template data-value="0x3f800000">1</template>
+    <template data-value="0x523a43b7">galaxies in the universe</template>
+    <template data-value="0x7f80000">Infinity</template>
+    <template data-value="0x7f800001">NaN</template>
+</floating-point-demo>
 
 <!-- TODO: FP bit tricks? -->
 <!-- TODO: FP pitfalls? -->
@@ -792,7 +821,7 @@
 </p>
 <p>
     Also, while integers and floats are what the processor works with directly, programs can use more complex number formats
-    made out of the basic ones, for example complex numbers are represented as a pair of floats,
+    based upon the fundamental ones, for example complex numbers are represented as a pair of floats,
     arbitrary-precision integers are a big block of data interpreted as an integer in software
     and decimal numbers have their digits represented with groups of bits
     (which is useful if you're working with something inherently base-10 and don't want to
@@ -806,5 +835,3 @@
     and has additional visuals over the demos in this article.
 </p>
 
-<!-- TODO: add more demos where it'd improve clarity -->
-<!-- TODO: try and improve idea cohesion -->
