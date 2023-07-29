@@ -1,5 +1,6 @@
-import { LitElement, html, nothing } from "lit";
+import { LitElement, html } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
+import { radioStyles } from "./radio-styles";
 
 @customElement("type-switcher")
 export class TypeSwitcher extends LitElement {
@@ -17,6 +18,10 @@ export class TypeSwitcher extends LitElement {
 
     @state()
     private targetElement: HTMLElement;
+
+    static styles = [
+        radioStyles
+    ];
 
     constructor() {
         super();
@@ -37,9 +42,16 @@ export class TypeSwitcher extends LitElement {
 
     render() {
         return html`
-            <div>
+            <div class="radio-box">
                 ${this.types.map((type) => html`
-                    <input type="radio" name="ts-${this.idToken}" id="ts-${this.idToken}-${type.id}" value=${type.id} ?checked=${type.id == this.selected} @change=${() => this.select(type.id)}>
+                    <input
+                        type="radio"
+                        name="ts-${this.idToken}"
+                        id="ts-${this.idToken}-${type.id}"
+                        value=${type.id}
+                        ?checked=${type.id == this.selected}
+                        @change=${() => this.select(type.id)}
+                    >
                     <label for="ts-${this.idToken}-${type.id}">${type.name}</label>
                 `)}
             </div>
