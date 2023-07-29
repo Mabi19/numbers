@@ -1,6 +1,10 @@
 import { css } from "lit";
 
 export const bitStyles = css`
+    *, *::after, *::before {
+        box-sizing: border-box;
+    }
+
     math {
         font-family: "Latin Modern Math", "Cambria Math";
         font-size: 1.075em;
@@ -21,6 +25,7 @@ export const bitStyles = css`
         overflow-x: auto;
 
         width: max-content;
+        max-width: 100%;
     }
 
     .bits {
