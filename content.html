@@ -31,12 +31,17 @@
 </dl>
 
 <h2>Memory</h2>
-<memory-demo></memory-demo>
+<memory-demo id="memory-demo"></memory-demo>
 <p>
     Memory is a collection of cells holding one of two values (i.e. a bit). These can represent basically anything that has two states,
     though usually they are visualized using ones and zeroes.
 </p>
-<memory-demo-controller></memory-demo-controller>
+<type-switcher target="#memory-demo" selected="1_0">
+    <template data-type="1_0">1/0</template>
+    <template data-type="T_F">T/F</template>
+    <template data-type="X_O">X/O</template>
+    <template data-type="at_star">@/*</template>
+</type-switcher>
 <p>
     Note that bits are usually grouped in eights, so using a multiple of 8 would be easiest to work with.
     We'll use just 8 bits for simplicity, but all of the following number formats come in a variety of sizes.
