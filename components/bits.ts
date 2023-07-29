@@ -40,7 +40,8 @@ export function bitsToSignBitInt(bits: boolean[]) {
         result += Number(bits[i]) * 1 << i;
     }
     // manually set the sign
-    return result * (bits.at(-1) ? -1 : 1);
+    // do not flip if zero; we don't want to reveal -0 yet
+    return result * ((result != 0 && bits.at(-1)) ? -1 : 1);
 }
 
 export function bitsToFixedPoint(bits: boolean[]) {
