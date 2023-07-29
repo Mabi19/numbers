@@ -44,7 +44,8 @@ export const bitStyles = css`
 
     .bit {
         font-size: 1.125em;
-        padding: 1px;
+        /* 3rd one is bottom */
+        padding: 1px 1px 0 1px;
         user-select: none;
         cursor: pointer;
 
