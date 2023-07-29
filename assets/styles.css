@@ -37,6 +37,17 @@ h1, h2, h3 {
     line-height: 1;
 }
 
+h1 {
+    text-decoration: underline;
+    text-align: center;
+    margin: 12px 0 4px 0;
+}
+
+aside.subheader {
+    text-align: center;
+    font-style: italic;
+}
+
 p {
     margin: 12px 0;
 }
