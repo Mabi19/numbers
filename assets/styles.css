@@ -29,6 +29,10 @@ body {
     margin: 0;
 }
 
+main {
+    padding: 12px 8px;
+}
+
 h1, h2, h3 {
     line-height: 1;
 }
