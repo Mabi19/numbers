@@ -119,10 +119,9 @@
     Remember that "unsigned integer" and "two's complement" are just ways of interpreting a collection of bits.
     Because all the relevant bit patterns match, we can convert for free by just changing how we're interpreting the data.
 </p>
-<type-switcher
-    target="#twoc-switching-demo"
-    types='[{ "id": "unsigned", "name": "Unsigned" }, { "id": "twos-complement", "name": "Two&apos;s complement" }]'
-    selected="twos-complement">
+<type-switcher target="#twoc-switching-demo" selected="twos-complement">
+    <template data-type="unsigned">Unsigned</template>
+    <template data-type="twos-complement">Two's complement</template>
 </type-switcher>
 <div class="note">
     (this toggle affects the demo above)

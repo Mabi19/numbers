@@ -7,14 +7,14 @@ export class TypeSwitcher extends LitElement {
     @property()
     target: string;
 
-    @property({ type: Array })
-    types: { id: string, name: string }[];
-
     @property()
     selected?: string;
 
     @state()
     private targetElement: HTMLElement;
+
+    @state()
+    private types: { id: string, name: string }[];
 
     static styles = [
         radioStyles
@@ -22,6 +22,13 @@ export class TypeSwitcher extends LitElement {
 
     constructor() {
         super();
+
+        this.types = Array.from(this.childNodes)
+            .filter((node) => node.nodeType == Node.ELEMENT_NODE)
+            .map((elem: HTMLTemplateElement) => ({
+                id: elem.dataset.type,
+                name: elem.content.textContent,
+            }))
     }
 
     connectedCallback() {
