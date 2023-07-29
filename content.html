@@ -84,7 +84,13 @@
     </math>)
     to be able to represent numbers from -128 to 127:
 </p>
-<integer-demo type="shifted" value="0x80"></integer-demo>
+<integer-demo type="shifted" value="0x80">
+    <template data-value="0">-128</template>
+    <template data-value="0x7f">-1</template>
+    <template data-value="0x80">0</template>
+    <template data-value="0x81">1</template>
+    <template data-value="0xff">127</template>
+</integer-demo>
 <p>
     At first glance this way of doing negatives seems perfect!
     After all it's very simple, it covers a useful range and all the bit patterns correspond to unique integers.
