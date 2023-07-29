@@ -172,8 +172,10 @@
     For large values, we can move the point after most of the bits, and for small numbers, we can put it
     after one zero bit.
 </p>
-<!-- TODO: find a better example value -->
-<moving-point-demo value="0x30005000" type="simple"></moving-point-demo>
+<moving-point-demo value="0x68019000" type="simple">
+    <template data-value="0xa5b8d800">750,000</template>
+    <template data-value="0x00010625">0.0005 (inexact)</template>
+</moving-point-demo>
 <p>
     Also, since 5 bits give us more possible bit positions than there actually are with the remaining 27 value bits,
     we can use the remaining ones for <em>hypervalues</em>, by putting extra <em>virtual zeroes</em> to fill in the space.
