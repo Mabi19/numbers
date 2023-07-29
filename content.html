@@ -169,8 +169,8 @@
 <p>
     Since larger numbers are inherently less precise, could we skip defining all those decimals for large values?
     Well, yes! Let's dedicate, say, 5 bits to defining where the binary point is.
-    For large values, we can move the point after most of the bits, and for small numbers, we can put it
-    after one zero bit.
+    For large values, we can move the point to the right to not store the unnecessary fractional part,
+    and for small numbers, we can omit all the integer bits by moving the point to the left.
 </p>
 <moving-point-demo value="0x68019000" type="simple">
     <template data-value="0xa5b8d800">750,000</template>
