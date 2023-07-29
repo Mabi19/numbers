@@ -3,7 +3,8 @@ import { css } from "lit";
 export const radioStyles = css`
     .radio-box {
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: row wrap;
+        row-gap: 2px;
     }
 
     input[type=radio], input[type=checkbox] {
