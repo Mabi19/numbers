@@ -48,7 +48,7 @@ aside.subheader {
     font-style: italic;
 }
 
-p {
+p, ul {
     margin: 12px 0;
 }
 
