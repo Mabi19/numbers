@@ -169,12 +169,13 @@
     does make fixed point a good option in some niche cases.
 </p>
 
-<h2>But we can do better</h2>
+<h2>Better accomodating real-world data</h2>
 <p>
     Having uniformly spaced values, despite being great for integers, hasn't worked out so well for fractions.
     So, how should we distribute them? Well, since we want to fit as many use cases as possible into one format,
     both atom-sized and universe-sized numbers should be supported.
     But in practice, universe-sized numbers are less precise (in absolute terms) than atom-sized ones.
+    We can take advantage of this.
 </p>
 
 <h2>Moving the binary point</h2>
