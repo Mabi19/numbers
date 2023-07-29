@@ -1,9 +1,4 @@
-const INTEGER_BITS = 8;
-
-export function uintToBits(value: number, bitCount: number = -1) {
-    if (bitCount == -1)
-        bitCount = INTEGER_BITS;
-
+export function uintToBits(value: number, bitCount: number) {
     const result: boolean[] = [];
     for (let i = 0; i < bitCount; i++) {
         result.push(Boolean(value & (2 ** i)));
@@ -24,7 +19,7 @@ export function bitsToInt(bits: boolean[]) {
     for (let i = 0; i < bits.length; i++) {
         let summand = Number(bits[i]) * 1 << i;
         // flip it if it's supposed to be negative
-        if (i == INTEGER_BITS - 1)
+        if (i == bits.length - 1)
             summand *= -1;
 
         result += summand;
@@ -40,7 +35,7 @@ export function bitsToSignBitInt(bits: boolean[]) {
         result += Number(bits[i]) * 1 << i;
     }
     // manually set the sign
-    // do not flip if zero; we don't want to reveal -0 yet
+    // do not flip if zero; we don't want to reveal -0
     return result * ((result != 0 && bits.at(-1)) ? -1 : 1);
 }
 
@@ -48,22 +43,33 @@ export function bitsToFixedPoint(bits: boolean[]) {
     return bitsToUInt(bits) / (2 ** Math.floor(bits.length / 2));
 }
 
+
 export const MOVING_POINT_BITS = 5;
-export function bitsToMovingPoint(bits: boolean[]) {
+interface MovingPointParts {
+    pointPositionBits: boolean[];
+    virtualZeroes: number;
+    pointPosition: number;
+    valueBits: boolean[];
+}
+
+export function splitMovingPoint(bits: boolean[]): MovingPointParts {
     // extract the parts
     const pointPositionBits = bits.slice(bits.length - MOVING_POINT_BITS);
-    // decides the multiplier
-    const rawPointPosition = bitsToUInt(pointPositionBits);
-    // decides where to draw it
-    const pointPosition = 27 - Math.min(27, rawPointPosition);
-
+    const pointPosition = bitsToUInt(pointPositionBits);
     const valueBits = bits.slice(0, bits.length - MOVING_POINT_BITS);
-    const rawValue = bitsToUInt(valueBits);
 
-    // extra range by adding virtual zeroes
-    let virtualZeroes = Math.max(0, rawPointPosition - 27);
+    return {
+        pointPositionBits,
+        virtualZeroes: Math.max(0, bitsToUInt(pointPositionBits) - 27),
+        pointPosition,
+        valueBits
+    }
+}
 
-    return { pointPosition, virtualZeroes, value: rawValue / (2 ** (27 - rawPointPosition)) }
+export function bitsToMovingPoint(parts: MovingPointParts) {
+    const rawValue = bitsToUInt(parts.valueBits);
+
+    return { virtualZeroes: parts.virtualZeroes, value: rawValue / (2 ** (27 - parts.pointPosition)) }
 }
 
 

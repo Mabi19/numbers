@@ -87,7 +87,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
                             id="preset-${idx}"
                             value=${preset.name}
                             ?checked=${preset.value == this.valueAsUInt}
-                            @change=${() => this.bits = uintToBits(preset.value)}
+                            @change=${() => this.bits = uintToBits(preset.value, options.bits)}
                         >
                         <label for="preset-${idx}">${preset.name}</label>
                     `)}
