@@ -6,8 +6,10 @@ export const radioStyles = css`
         flex-flow: row nowrap;
     }
 
-    input[type=radio] {
-        display: none;
+    input[type=radio], input[type=checkbox] {
+        visibility: hidden;
+        position: absolute;
+        left: -999999px;
     }
 
     input[checked] + label {

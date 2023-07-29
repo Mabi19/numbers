@@ -77,17 +77,26 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
             `)
         }
 
+        setPreset(idx: number) {
+            console.log("setting preset", idx);
+            this.bits = uintToBits(this.presets[idx].value, options.bits);
+        }
+
         makePresets() {
+            // these are checkboxes masquerading as radio buttons
+            // because they need to be deselected at will
+            // (and deselecting radio buttons makes them do weird things)
             return html`
-                <div class="radio-box">
+                <div class="radio-box" role="radiogroup">
                     ${this.presets.map((preset, idx) => html`
                         <input
-                            type="radio"
+                            type="checkbox"
+                            role="radio"
                             name="preset"
                             id="preset-${idx}"
                             value=${preset.name}
                             ?checked=${preset.value == this.valueAsUInt}
-                            @change=${() => this.bits = uintToBits(preset.value, options.bits)}
+                            @change=${() => this.setPreset(idx)}
                         >
                         <label for="preset-${idx}">${preset.name}</label>
                     `)}
