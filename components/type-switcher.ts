@@ -25,7 +25,7 @@ export class TypeSwitcher extends LitElement {
 
     constructor() {
         super();
-        this.idToken = Math.trunc(Math.random() * 0x10000).toString(16);
+        this.idToken = Math.trunc(Math.random() * 0x100000).toString(16);
     }
 
     connectedCallback() {

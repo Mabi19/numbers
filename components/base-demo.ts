@@ -1,8 +1,9 @@
-import { LitElement, TemplateResult, html, nothing } from "lit";
-import { property } from "lit/decorators.js";
-import { uintToBits } from "./bits";
+import { LitElement, PropertyValues, TemplateResult, html, nothing } from "lit";
+import { property, state } from "lit/decorators.js";
+import { bitsToUInt, uintToBits } from "./bits";
 import { bitStyles } from "./bit-styles";
 import { formatGenericNumber } from "./number-formatting";
+import { radioStyles } from "./radio-styles";
 
 export interface BaseDemoOptions<Types extends readonly string[]> {
     readonly bits: number;
@@ -13,6 +14,11 @@ export interface BitElementsOptions {
     offset?: number;
     class?: string;
     locked?: boolean;
+}
+
+interface Preset {
+    name: string;
+    value: number;
 }
 
 export function baseDemo<const Types extends readonly string[]>(options: BaseDemoOptions<Types>) {
@@ -28,10 +34,42 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
     
         @property({ type: Boolean })
         locked: boolean = false;
+
+        // the following properties are used for presets
+
+        @state()
+        private presets: Preset[];
+
+        @state()
+        private valueAsUInt: number;
+
+        @state()
+        private idToken: string;
     
         static styles: any[] = [
-            bitStyles
+            bitStyles,
+            radioStyles
         ]
+
+        constructor() {
+            super();
+            this.idToken = Math.trunc(Math.random() * 0x100000).toString(16);
+
+            console.log(this.childNodes);
+            this.presets = Array.from(this.childNodes)
+                .filter((node) => node.nodeType == Node.ELEMENT_NODE)
+                .map((elem: HTMLTemplateElement) => ({
+                    value: parseInt(elem.dataset.value),
+                    name: elem.content.textContent
+                }));
+        }
+
+        willUpdate(changed: PropertyValues<this>) {
+            // update value as uint
+            if (changed.has("bits")) {
+                this.valueAsUInt = bitsToUInt(this.bits);
+            }
+        }
 
         makeBitElements(bits: boolean[], options: BitElementsOptions = {}): TemplateResult | TemplateResult[] {
             const offset = options.offset ?? 0;
@@ -41,6 +79,24 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
                     @click=${!options.locked ? () => this.toggleBit(idx + offset) : nothing}
                 >${val ? 1 : 0}</div>
             `)
+        }
+
+        makePresets() {
+            return html`
+                <div class="radio-box">
+                    ${this.presets.map((preset, idx) => html`
+                        <input
+                            type="radio"
+                            name="preset"
+                            id="preset-${idx}"
+                            value=${preset.name}
+                            ?checked=${preset.value == this.valueAsUInt}
+                            @change=${() => this.bits = uintToBits(preset.value)}
+                        >
+                        <label for="preset-${idx}">${preset.name}</label>
+                    `)}
+                </div>
+            `;
         }
 
         renderBits() {
@@ -54,9 +110,10 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
     
         render() {
             return html`
-                <!-- TODO: lock icon when demo is locked -->
-                <!-- TODO: value presets -->
                 <div class="demo">
+                    <div class="top">
+                        ${this.makePresets()}
+                    </div>
                     <div class="bits ${this.locked ? 'locked' : undefined}">
                         ${this.renderBits()}
                     </div>
@@ -69,7 +126,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
     
         protected toggleBit(idx: number) {
             if (!this.locked) {
-                this.bits[idx] = !this.bits[idx]
+                this.bits[idx] = !this.bits[idx];
                 this.requestUpdate();
             }
         }

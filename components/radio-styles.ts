@@ -16,7 +16,7 @@ export const radioStyles = css`
     }
 
     label {
-        padding: 8px;
+        padding: 4px 8px;
         border: 1px solid black;
         border-left: none;
 

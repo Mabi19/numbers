@@ -68,8 +68,10 @@
 <p>
     However, this way of doing it has one tiny issue: there are two ways to write 0.
 </p>
-<integer-demo type="sign-bit" value="0" locked></integer-demo>
-<integer-demo type="sign-bit" value="0x80" locked></integer-demo>
+<integer-demo type="sign-bit" value="0" locked>
+    <template data-value="0">Zero</template>
+    <template data-value="0x80">Also zero</template>
+</integer-demo>
 <p>
     Instead, we could interpret the number as if it was unsigned, but then offset it down by 128
     (<math display="inline">
