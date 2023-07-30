@@ -6,7 +6,7 @@
 
 <p>
     We have tricked electrons into doing simple logic, but that's not too useful on its own.
-    While this is enough to perform basically any computation, <em>actually having numbers</em> would be very helpful -
+    While this is enough to perform basically any computation, <em>actually having numbers</em> would be very helpful &mdash;
     basically everything that a modern computer does is based on arithmetic in some way, for example:
     <ul>
         <li>A spreadsheet can contain expressions with mathematical operators</li>
@@ -30,7 +30,7 @@
     <dd>
         Perhaps the most important trait, as the whole point of having the capability to do math is for programs to use it.
         Additionally, fitting as many use cases into as few formats as possible would be ideal,
-        as having more ways to store numbers than necessary would make processors a lot more expensive and power-hungry.
+        as having more ways to store numbers than necessary would make processors a lot more expensive and power&hyphen;hungry.
     </dd>
     <dt>Simplicity</dt>
     <dd>
@@ -77,7 +77,7 @@
             <mn>1</mn>
         </mrow>
     </math>).
-    This format is called an <em>8-bit unsigned integer</em>.
+    This format is called an <em>8&hyphen;bit unsigned integer</em>.
 </p>
 <integer-demo type="unsigned" value="53"></integer-demo>
 
@@ -103,11 +103,11 @@
             </msup>
         </mrow>
     </math>)
-    to be able to represent numbers from -128 to 127:
+    to be able to represent numbers from &minus;128 to 127:
 </p>
 <integer-demo type="shifted" value="0x80">
-    <template data-value="0">-128</template>
-    <template data-value="0x7f">-1</template>
+    <template data-value="0">&minus;128</template>
+    <template data-value="0x7f">&minus;1</template>
     <template data-value="0x80">0</template>
     <template data-value="0x81">1</template>
     <template data-value="0xff">127</template>
@@ -131,18 +131,18 @@
 </p>
 <p>
     Since arithmetic and conversions are only defined for where the ranges of the two formats overlap,
-    could we have the 0-127 range use the same bit patterns for both signed and unsigned integers?
+    could we have the 0&ndash;127 range use the same bit patterns for both signed and unsigned integers?
     It turns out that the answer is yes! There are several ways to achieve this,
     but by far the most common approach is making the most significant bit subtract 128 from the total instead of adding it.
 </p>
 <integer-demo type="twos-complement" value="0xf4" id="twoc-switching-demo">
-    <template data-value="0x80">-128</template>
-    <template data-value="0xfd">-3</template>
+    <template data-value="0x80">&minus;128</template>
+    <template data-value="0xfd">&minus;3</template>
     <template data-value="0x3">3</template>
     <template data-value="0x7f">127</template>
 </integer-demo>
 <p>
-    Remember that "unsigned integer" and "two's complement" are just ways of interpreting a collection of bits.
+    Remember that &ldquo;unsigned integer&rdquo; and &ldquo;two's complement&rdquo; are just ways of interpreting a collection of bits.
     Because all the relevant bit patterns match, we can convert for free by just changing how we're interpreting the data.
 </p>
 <type-switcher target="#twoc-switching-demo" selected="twos-complement">
@@ -155,7 +155,7 @@
 <p>
     Additionally, two's complement allows us to drop the circuitry for signed addition,
     subtraction and multiplication, and if you're familiar with the
-    <a href="https://youtu.be/3gyHKCDq1YA">p-adic numbers</a> you might already have noticed why.
+    <a href="https://youtu.be/3gyHKCDq1YA">p&hyphen;adic numbers</a> you might already have noticed why.
 </p>
 <div>
     TODO: signed addition demo
@@ -168,7 +168,7 @@
 <h2>A binary point in the middle</h2>
 <p>
     Since we have mastered integers, we can now go fractional.
-    Let's start by taking a regular 32-bit unsigned integer and putting a binary point in the middle:
+    Let's start by taking a regular 32&hyphen;bit unsigned integer and putting a binary point in the middle:
 </p>
 <fixed-point-demo value="0x00038000">
     <template data-value="0x000000ac">0.00262</template>
@@ -178,7 +178,7 @@
 <p>
     This is called fixed point, and it's <em>not terrible</em>.
     We have drastically cut the range of numbers we can represent, <em>without including negative numbers</em>
-    (as an integer, we could represent the range 0-4,294,967,295 with 32 bits, and this format has only 0 to just under 65536),
+    (as an integer, we could represent the range 0&ndash;4,294,967,295 with 32 bits, and this format has only 0 to just under 65536),
     and the precision we get out of that sacrifice isn't even that great.
     We could try putting the binary point somewhere else, but there really isn't a spot that gives both decent range and precision.
 </p>
@@ -187,12 +187,12 @@
     does make fixed point a good option in some niche cases.
 </p>
 
-<h2>Better accomodating real-world data</h2>
+<h2>Better accomodating real&hyphen;world data</h2>
 <p>
     Having uniformly spaced values, despite being great for integers, hasn't worked out so well for fractions.
     So, how should we distribute them? Well, since we want to fit as many use cases as possible into one format,
-    both atom-sized and universe-sized numbers should be supported.
-    But in practice, universe-sized numbers are less precise (in absolute terms) than atom-sized ones.
+    both atom&hyphen;sized and universe&hyphen;sized numbers should be supported.
+    But in practice, universe&hyphen;sized numbers are less precise (in absolute terms) than atom&hyphen;sized ones.
     We can take advantage of this.
 </p>
 
@@ -216,7 +216,7 @@
     <template data-value="0xfd9682f0">1.5 billion</template>
 </moving-point-demo>
 <p>
-    However, even with this range extension, the format is still extremely wasteful - for example, you can write 0
+    However, even with this range extension, the format is still extremely wasteful &mdash; for example, you can write 0
     in 32 different ways as the point position does not matter.
     <!--
         Which representations are canonical:
@@ -231,7 +231,7 @@
 
 <h2>Scientific notation</h2>
 <p>
-    In order to ensure uniqueness, we can take inspiration from a way you might see numbers written down in the real world -
+    In order to ensure uniqueness, we can take inspiration from a way you might see numbers written down in the real world &mdash;
     scientific notation! We will need to adapt it to better suit our needs, though.
 </p>
 <p>
@@ -254,11 +254,11 @@
     Since we need both positive and negative exponents to represent large and small numbers respectively,
     we need to use a signed format.
     We could try doing two's complement again, but we wouldn't actually be able to take advantage of its benefits very well in this case
-    (as there is no existing unsigned logic we can re-use).
+    (as there is no existing unsigned logic we can reuse).
     Instead, let's just make it an unsigned integer and subtract 127 from it, as that would make the underlying implementation simpler.
 </p>
 <p>
-    For the mantissa, let's just use the remaining 24 bits as a fixed-point number with 1 binary digit before the binary point.
+    For the mantissa, let's just use the remaining 24 bits as a fixed&hyphen;point number with 1 binary digit before the binary point.
     As for its sign, note that two's complement or shifting would be incredibly awkward to use here.
     This is because we need to represent a balanced range,
     and ideally there would be an equal amount of values on either side of 0.
@@ -279,7 +279,7 @@
         </mrow>
     </math>).
     Therefore, since we can't use the extra value effectively, let's just waste it in the simplest way possible:
-    dedicate one bit of the mantissa to the sign, negating the value when the bit is 1. (The extra value goes to -0.)
+    dedicate one bit of the mantissa to the sign, negating the value when the bit is 1. (The extra value goes to &minus;0.)
 </p>
 <table>
     <caption>
@@ -309,16 +309,16 @@
         </tr>
         <tr>
             <td>00000010</td>
-            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-125</mn></msup></mrow></math></td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>&minus;125</mn></msup></mrow></math></td>
         </tr>
         <tr>
             <td>00000001</td>
-            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math></td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>&minus;126</mn></msup></mrow></math></td>
         </tr>
         <tr>
             <td>00000000</td>
             <td>
-                <math display="inline"><mrow><msup><mn>2</mn><mn>-127</mn></msup></mrow></math>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>&minus;127</mn></msup></mrow></math>
             </td>
         </tr>
     </tbody>
@@ -327,16 +327,16 @@
 <h3>Actually ensuring uniqueness</h3>
 <p>
     Our format does not guarantee uniqueness yet. This is because we skipped one requirement of scientific notation:
-    the first digit of the mantissa must be non-zero (otherwise you can change the exponent and get the same value).
-    So, we have to make the first digit of the mantissa non-zero.
+    the first digit of the mantissa must be non&hyphen;zero (otherwise you can change the exponent and get the same value).
+    So, we have to make the first digit of the mantissa non&hyphen;zero.
 </p>
 <p>
-    Notice that since we're working in binary, there is only one non-zero digit: one!
+    Notice that since we're working in binary, there is only one non&hyphen;zero digit: one!
     That means that we can omit storing it entirely, which allows us to double the mantissa's precision. Nice!
 </p>
 <h3>Oh wait</h3>
 <p>
-    Remember when I said that the first digit of the mantissa must be non-zero? That's true, except for exactly one number: 0.
+    Remember when I said that the first digit of the mantissa must be non&hyphen;zero? That's true, except for exactly one number: 0.
     Thus, we can't write it anymore. So, let's just set the all zeroes (except for possibly the sign bit)
     bit pattern to represent &pm;0.
 </p>
@@ -368,16 +368,16 @@
         </tr>
         <tr>
             <td>00000010</td>
-            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-125</mn></msup></mrow></math></td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>&minus;125</mn></msup></mrow></math></td>
         </tr>
         <tr>
             <td>00000001</td>
-            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math></td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>&minus;126</mn></msup></mrow></math></td>
         </tr>
         <tr>
             <td>00000000</td>
             <td>
-                <math display="inline"><mrow><msup><mn>2</mn><mn>-127</mn></msup></mrow></math>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>&minus;127</mn></msup></mrow></math>
                 &amp;special case: 0
             </td>
         </tr>
@@ -398,7 +398,7 @@
     error accumulation)
 </p>
 <p>
-    Notice that now, each bit pattern actually represents a range of values -
+    Notice that now, each bit pattern actually represents a range of values &mdash;
     the actual result that rounded to it could have been anywhere within the rounding window.
 </p>
 <p>
@@ -449,7 +449,7 @@
                 <mn>&minus;127</mn>
             </msup>
         </mrow>
-    </math>-sized numbers originally were).
+    </math>&hyphen;sized numbers originally were).
     Let's call these <em>subnormal numbers</em>.
 </p>
 <p>
@@ -513,16 +513,16 @@
         </tr>
         <tr>
             <td>00000010</td>
-            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-125</mn></msup></mrow></math></td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>&minus;125</mn></msup></mrow></math></td>
         </tr>
         <tr>
             <td>00000001</td>
-            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math></td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>&minus;126</mn></msup></mrow></math></td>
         </tr>
         <tr>
             <td>00000000</td>
             <td>
-                <math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>&minus;126</mn></msup></mrow></math>
                 (subnormals)
             </td>
         </tr>
@@ -535,7 +535,7 @@
             <mrow>
                 <msup>
                     <mn>10</mn>
-                    <mn>-40</mn>
+                    <mn>&minus;40</mn>
                 </msup>
             </mrow>
         </math>
@@ -548,7 +548,7 @@
     Having a special value for numbers outside the normal range would be useful.
     For example, since zero could actually be any number close to 0, dividing by it
     <em>would result in an actual value</em>! We can't know it exactly (since we threw away that precision),
-    so it would just result in the too-big sentinel.
+    so it would just result in the too&hyphen;big sentinel.
     This means that it effectively covers the part of the number line from the (new) largest regular value all the way to &infin;.
 </p>
 <p>
@@ -563,7 +563,7 @@
     So, how does math work with a number that we only know is very large?
     Well, in practice, it only really makes sense to give it the same properties that &infin;
     (or, more precisely, a limit that diverges to &infin;) has traditionally,
-    namely that it's contagious - most operations involving infinities will result in another infinity:
+    namely that it's contagious &mdash; most operations involving infinities will result in another infinity:
 </p>
 <ul>
     <li>
@@ -643,16 +643,16 @@
         </tr>
         <tr>
             <td>00000010</td>
-            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-125</mn></msup></mrow></math></td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>&minus;125</mn></msup></mrow></math></td>
         </tr>
         <tr>
             <td>00000001</td>
-            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math></td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>&minus;126</mn></msup></mrow></math></td>
         </tr>
         <tr>
             <td>00000000</td>
             <td>
-                <math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>&minus;126</mn></msup></mrow></math>
                 (subnormals)
             </td>
         </tr>
@@ -675,19 +675,19 @@
             <mi>&infin;</mi><mo>&sdot;</mo><mn>0</mn>
         </mrow>
     </math>
-    can't have a definite value assigned to it -
+    can't have a definite value assigned to it &mdash;
     a very big number we don't know exactly times a very small number we don't know exactly could be
     <em>literally anything</em>.
 </p>
 <p>
-    So, what should happen when a question-mark operation happens?
+    So, what should happen when a question&hyphen;mark operation happens?
     Well, first of all, an error should probably be raised somewhere.
     However, some programs might not want to be interrupted when working with these kinds of values,
     so we can't do much more than setting a flag in the processor.
 </p>
 <p>
-    But, since a question-mark operation can't suspend execution, it needs to return a value.
-    Let's call it "Not a Number", or NaN. Now, where do we put it?
+    But, since a question&hyphen;mark operation can't suspend execution, it needs to return a value.
+    Let's call it <em>Not a Number</em>, or NaN. Now, where do we put it?
 </p>
 <p>
     Note that since there are several different operations that could produce NaNs,
@@ -708,7 +708,7 @@
 </p>
 <ul>
     <li>
-        NaNs are contagious, like infinities - 
+        NaNs are contagious, like infinities &mdash;
         pretty much all arithmetic operations involving a NaN will produce another NaN,
         since we can't derive a specific value from a lack of information
     </li>
@@ -741,7 +741,7 @@
                 and the result will be a regular (quiet) NaN
             </li>
             <li>
-                This could, for example, be used for additional error-checking
+                This could, for example, be used for additional error&hyphen;checking
             </li>
             <li>
                 In practice, signaling NaNs aren't very common
@@ -779,16 +779,16 @@
         </tr>
         <tr>
             <td>00000010</td>
-            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-125</mn></msup></mrow></math></td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>&minus;</mn>125</mn></msup></mrow></math></td>
         </tr>
         <tr>
             <td>00000001</td>
-            <td><math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math></td>
+            <td><math display="inline"><mrow><msup><mn>2</mn><mn>&minus;</mn>126</mn></msup></mrow></math></td>
         </tr>
         <tr>
             <td>00000000</td>
             <td>
-                <math display="inline"><mrow><msup><mn>2</mn><mn>-126</mn></msup></mrow></math>
+                <math display="inline"><mrow><msup><mn>2</mn><mn>&minus;</mn>126</mn></msup></mrow></math>
                 (subnormals)
             </td>
         </tr>
@@ -811,18 +811,19 @@
 <p>
     We have now reinvented the three most common number formats used by modern computers:
     unsigned integers, two's complement integers and IEEE 754 floating point numbers
-    (well, mostly - some details have been left out, mostly regarding NaNs and some arithmetic edge cases).
+    (well, mostly &mdash; some details have been left out, mostly regarding NaNs and some arithmetic edge cases).
 </p>
 <p>
-    Note that these formats come in a variety of sizes - 8-bit, 16-bit, 32-bit and 64-bit integers are common,
-    and floats typically come in 32-bit and 64-bit (which has 11 bits of exponent and 52 bits of mantissa) varieties
+    Note that these formats come in a variety of sizes &mdash;
+    8&hyphen;bit, 16&hyphen;bit, 32&hyphen;bit and 64&hyphen;bit integers are common,
+    and floats typically come in 32&hyphen;bit and 64&hyphen;bit (which has 11 bits of exponent and 52 bits of mantissa) varieties.
 </p>
 <p>
     Also, while integers and floats are what the processor works with directly, programs can use more complex number formats
     based upon the fundamental ones, for example complex numbers are represented as a pair of floats,
-    arbitrary-precision integers are a big block of data interpreted as an integer in software
+    arbitrary&hyphen;precision integers are a big block of data interpreted as an integer in software
     and decimal numbers have their digits represented with groups of bits
-    (which is useful if you're working with something inherently base-10 and don't want to
+    (which is useful if you're working with something inherently base&hyphen;10 and don't want to
     <a href="https://0.30000000000000004.com/">lose precision</a>, such as currency).
 </p>
 <p>
@@ -833,4 +834,3 @@
     and has additional visuals over the demos in this article.
 </p>
 
-<!-- TODO: improve typography -->
