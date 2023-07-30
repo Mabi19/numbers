@@ -818,6 +818,19 @@
     and floats typically come in 32&hyphen;bit and 64&hyphen;bit (which has 11 bits of exponent and 52 bits of mantissa) varieties.
 </p>
 <p>
+    While the basic functionality of the above&hyphen;mentioned number formats has been explained,
+    they also lend themselves to various bit-manipulation exploits. I won't be explaining them here,
+    but here are some of my favourites:
+</p>
+<ul>
+    <li><a href="https://stackoverflow.com/questions/73646834#answer-73655977">
+        Fast division by a constant
+    </a></li>
+    <li><a href="https://youtu.be/p8u_k2LIZyo">
+        Fast inverse square root
+    </a></li>
+</ul>
+<p>
     Also, while integers and floats are what the processor works with directly, programs can use more complex number formats
     based upon the fundamental ones, for example complex numbers are represented as a pair of floats,
     arbitrary&hyphen;precision integers are a big block of data interpreted as an integer in software
