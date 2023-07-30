@@ -378,7 +378,7 @@
             <td>00000000</td>
             <td>
                 <math display="inline"><mrow><msup><mn>2</mn><mn>&minus;127</mn></msup></mrow></math>
-                &amp;special case: 0
+                &amp; special case: 0
             </td>
         </tr>
     </tbody>
@@ -409,7 +409,8 @@
 <p>
     Our format is currently <em>not great</em> at representing small numbers.
     Sure, we can store 0, but then we have a comparatively huge gap from anything else:
-    the smallest positive numbers in our format are
+    the smallest nonn&hyphen;negative numbers in our format are
+    0, then
     <math display="inline">
         <mrow>
             <msup>
@@ -430,12 +431,14 @@
                 <mn>&minus;127</mn>
             </msup>
             <mo>+</mo>
+            <mn>2</mn>
+            <mo>&sdot;</mo>
             <msup>
                 <mn>2</mn>
-                <mn>&minus;149</mn>
+                <mn>&minus;150</mn>
             </msup>
         </mrow>
-    </math>.
+    </math>, and so on.
     That means that the second gap is only 0.000012% of the first one.
 </p>
 <p>
@@ -627,7 +630,7 @@
             <td>11111111</td>
             <td>
                 <math display="inline"><mrow><msup><mn>2</mn><mn>128</mn></msup></mrow></math>
-                &amp;special case: infinities
+                &amp; special case: infinities
             </td>
         </tr>
         <tr>
@@ -799,7 +802,7 @@
     <template data-value="0x14c59342">mass of a carbon atom (kg)</template>
     <template data-value="0x3f800000">1</template>
     <template data-value="0x523a43b7">galaxies in the universe</template>
-    <template data-value="0x7f80000">Infinity</template>
+    <template data-value="0x7f800000">Infinity</template>
     <template data-value="0x7f800001">NaN</template>
 </floating-point-demo>
 
