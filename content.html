@@ -328,7 +328,7 @@
 <p>
     Our format does not guarantee uniqueness yet. This is because we skipped one requirement of scientific notation:
     the first digit of the mantissa must be non&hyphen;zero (otherwise you can change the exponent and get the same value).
-    So, we have to make the first digit of the mantissa non&hyphen;zero.
+    So, we have to force the first digit of the mantissa to be non&hyphen;zero.
 </p>
 <p>
     Notice that since we're working in binary, there is only one non&hyphen;zero digit: one!
@@ -336,7 +336,7 @@
 </p>
 <h3>Oh wait</h3>
 <p>
-    Remember when I said that the first digit of the mantissa must be non&hyphen;zero? That's true, except for exactly one number: 0.
+    Remember when I said that the first digit of the mantissa can't be zero? That's true, except for exactly one number: 0.
     Thus, we can't write it anymore. So, let's just set the all zeroes (except for possibly the sign bit)
     bit pattern to represent &pm;0.
 </p>
