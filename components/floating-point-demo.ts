@@ -85,11 +85,11 @@ export class FloatingPointDemo extends baseDemo({
         // display a placeholder when the too-large sentinel hasn't been named yet
         if (this.type == "large-sentinel" && isSpecial) {
             // +/-inf is the only special value in this mode
-            return html`value: ${when(result < 0, () => html`&#x2212`)}[too large] (special)`;
+            return html`= ${when(result < 0, () => html`&#x2212`)}[too large] (special)`;
         }
 
         return html`
-            value: ${formatGenericNumber(result)}
+            = ${formatGenericNumber(result)}
             ${when(isSpecial,
                 () => html`
                     (special)

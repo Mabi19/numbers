@@ -127,7 +127,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
 
         renderExtra() {
             const numValue = (this.constructor as typeof BaseDemo).bitsToNumberFuncs[this.type](this.bits);
-            return html`value: ${formatGenericNumber(numValue)}`
+            return html`= ${formatGenericNumber(numValue)}`
         }
     
         render() {

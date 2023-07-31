@@ -31,7 +31,7 @@ export class MovingPointDemo extends baseDemo({ bits: 32, types: ["simple", "hyp
     renderExtra() {
         const { virtualZeroes, value } = bitsToMovingPoint(splitMovingPoint(this.bits));
         return html`
-            value:
+            =
             ${when(virtualZeroes == 0 || this.type == "hypervalues",
                 () => html`${formatGenericNumber(value)}`,
                 () => html`?`

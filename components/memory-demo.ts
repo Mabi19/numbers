@@ -1,7 +1,7 @@
-import { LitElement, html, css, CSSResultGroup } from "lit";
+import { LitElement, html, css } from "lit";
 import { repeat } from "lit/directives/repeat.js";
 import { customElement, property, state } from "lit/decorators.js";
-import { bitStyles } from "./bit-styles";
+import { demoStyles } from "./demo-styles";
 
 function mod(n: number, m: number) {
     return ((n % m) + m) % m;
@@ -23,7 +23,7 @@ export class MemoryDemo extends LitElement {
     easterEggTimer: number | null = null;
 
     static styles = [
-        bitStyles,
+        demoStyles,
         css`
             .row {
                 display: flex;
