@@ -4,6 +4,7 @@ import { bitsToUInt, uintToBits } from "./bits";
 import { bitStyles } from "./bit-styles";
 import { formatGenericNumber } from "./number-formatting";
 import { radioStyles } from "./radio-styles";
+import { demoStyles } from "./demo-styles";
 
 export interface BaseDemoOptions<Types extends readonly string[]> {
     readonly bits: number;
@@ -45,6 +46,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
 
     
         static styles: any[] = [
+            demoStyles,
             bitStyles,
             radioStyles
         ]
