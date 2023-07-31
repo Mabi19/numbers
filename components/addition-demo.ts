@@ -170,6 +170,36 @@ export class AdditionDemo extends LitElement {
                 height: 1em;
                 grid-area: br;
             }
+
+            .controls {
+                display: flex;
+                flex-flow: row nowrap;
+                gap: 6px;
+            }
+
+            button {
+                background-color: inherit;
+                font: inherit;
+                color: #333;
+                border: 1px solid #333;
+                border-radius: 4px;
+                padding: 4px;
+
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                gap: 4px;
+
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #f5f5f5;
+            }
+
+            button img {
+                height: 1em;
+            }
         `
     ];
 
@@ -343,6 +373,22 @@ export class AdditionDemo extends LitElement {
             decimalResult = nothing;
         }
 
+        const startButton = html`
+            <button @click=${this.handleAutoplay}>
+                <img src="./assets/play.svg" role="presentation"><span>Start</span>
+            </button>
+        `;
+        const stepButton = html`
+            <button @click=${this.handleStep}>
+                <img src="./assets/step.svg" role="presentation"><span>Step</span>
+            </button>
+        `;
+        const stopButton = html`
+            <button @click=${this.handleStop}>
+                <img src="./assets/stop.svg" role="presentation"><span>Stop</span>
+            </button>
+        `;
+
         return html`
             <div class="demo ${animClass}">
                 <div class="calculation">
@@ -372,11 +418,11 @@ export class AdditionDemo extends LitElement {
                 </div>
                 <div class="controls">
                     ${when(this.animationProgress == -1, () => html`
-                        <button @click=${this.handleAutoplay}>start</button>
-                        <button @click=${this.handleStep}>step</button>
+                        ${startButton}
+                        ${stepButton}
                     `, () => html`
-                        <button @click=${this.handleStop}>stop</button>
-                        ${!this.isAutoplaying ? html`<button @click=${this.handleStep}>step</button>` : nothing}
+                        ${stopButton}
+                        ${!this.isAutoplaying ? stepButton : nothing}
                     `)}
                 </div>
             </div>
