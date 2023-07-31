@@ -101,9 +101,7 @@ export class FloatingPointDemo extends baseDemo({
                             <mo>&sdot;</mo>
                             <msup>
                                 <mn>2</mn>
-                                <mrow>
-                                    <mn>${data.exponent}</mn>
-                                </mrow>
+                                <mn>${data.exponent}</mn>
                             </msup>
                             <mo>&sdot;</mo>
                             <mn>${formatMantissa(data.mantissa)}</mn>
