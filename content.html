@@ -155,9 +155,36 @@
 <p>
     Additionally, two's complement allows us to drop the circuitry for signed addition,
     subtraction and multiplication, and if you're familiar with the
-    <a href="https://youtu.be/3gyHKCDq1YA">p&hyphen;adic numbers</a> you might already have noticed why.
+    <a href="https://youtu.be/3gyHKCDq1YA">p&hyphen;adic numbers</a> you might already have a hunch as to why.
 </p>
 <addition-demo value1="0xf6" value2="5"></addition-demo>
+<p>
+    Notice that if the result would need 9 bits to be stored fully, the last bit would be dropped.
+    This is called <em>overflow</em> and is what allows us to share the signed and unsigned logic.
+    Dropping the last bit means that we're actually working in
+    <a href="https://en.wikipedia.org/wiki/Modular_arithmetic">modular arithmetic</a> (specifically mod 256),
+    where numbers &ldquo;wrap around&rdquo;, so the number after 255 is 0.
+    In this system, every number has an additive inverse even without including negative numbers:
+    for example, the inverse of 2 is 254, since
+    <math display="inline">
+        <mrow>
+            <mn>2</mn>
+            <mo>+</mo>
+            <mn>254</mn>
+            <mo>&equiv;</mo>
+            <mn>0</mn>
+            <mo>(mod</mo>
+            <mn>256</mn>
+            <mo>)</mo>
+        </mrow>
+    </math>.
+</p>
+<p>
+    If you're familiar with the p-adics, those share the same property of not having an explicit sign
+    but arithmetic working the same as for positive numbers,
+    which is why negative numbers in two's complement look like 2-adic integers
+    with the infinite ones &ldquo;chopped off&rdquo;.
+</p>
 
 <hr>
 
