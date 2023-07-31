@@ -1,4 +1,4 @@
-import { LitElement, PropertyValues, TemplateResult, html, nothing } from "lit";
+import { LitElement, PropertyValues, TemplateResult, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 import { bitsToUInt, uintToBits } from "./bits";
 import { bitStyles } from "./bit-styles";
@@ -48,7 +48,13 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
         static styles: any[] = [
             demoStyles,
             bitStyles,
-            radioStyles
+            radioStyles,
+            css`
+                .lock {
+                    color: #333;
+                    height: 1.5rem;
+                }
+            `
         ]
 
         constructor() {
@@ -106,6 +112,15 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
             `;
         }
 
+        lockIcon() {
+            if (this.locked) {
+                return html`
+                    <img src="./assets/lock.svg" class="lock" title="This demo is locked!">
+                `;
+            }
+            return html``;
+        }
+
         renderBits() {
             return this.makeBitElements(this.bits)
         }
@@ -119,6 +134,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
             return html`
                 <div class="demo">
                     <div class="top">
+                        ${this.lockIcon()}
                         ${this.makePresets()}
                     </div>
                     <div class="bits ${this.locked ? 'locked' : undefined}">
