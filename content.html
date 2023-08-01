@@ -230,6 +230,7 @@
     <template data-value="0xa5b8d800">750,000</template>
     <template data-value="0x00010625">0.0005 (inexact)</template>
 </moving-point-demo>
+<div class="note">(green corresponds to point position)</div>
 <p>
     Also, since 5 bits give us more possible bit positions than there actually are with the remaining 27 value bits,
     we can use the remaining ones for <em>hypervalues</em>, by putting extra <em>virtual zeroes</em> to fill in the space.
@@ -347,6 +348,8 @@
     </tbody>
 </table>
 <floating-point-demo type="naive" value="0x40f00000"></floating-point-demo>
+<div class="note">(red &ndash; sign bit, green &ndash; exponent, blue &ndash; mantissa)</div>
+
 <h3>Actually ensuring uniqueness</h3>
 <p>
     Our format does not guarantee uniqueness yet. This is because we skipped one requirement of scientific notation:
