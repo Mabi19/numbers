@@ -375,17 +375,17 @@ export class AdditionDemo extends LitElement {
 
         const startButton = html`
             <button @click=${this.handleAutoplay}>
-                <img src="./assets/play.svg" role="presentation"><span>Start</span>
+                <img src="./assets/play.svg" role="presentation" width="16" height="16"><span>Start</span>
             </button>
         `;
         const stepButton = html`
             <button @click=${this.handleStep}>
-                <img src="./assets/step.svg" role="presentation"><span>Step</span>
+                <img src="./assets/step.svg" role="presentation" width="18" height="16"><span>Step</span>
             </button>
         `;
         const stopButton = html`
             <button @click=${this.handleStop}>
-                <img src="./assets/stop.svg" role="presentation"><span>Stop</span>
+                <img src="./assets/stop.svg" role="presentation" width="16" height="16"><span>Stop</span>
             </button>
         `;
 
