@@ -203,7 +203,7 @@ export class AdditionDemo extends LitElement {
         `
     ];
 
-    firstUpdated() {
+    setStyleVars() {
         function middle(row: Element) {
             const bitElem = row.firstElementChild;
             const bbox = bitElem.getBoundingClientRect();
@@ -228,6 +228,10 @@ export class AdditionDemo extends LitElement {
         Object.entries(styleVars).map(([name, value]) => {
             demo.style.setProperty(`--${name}`, `${value}px`);
         });
+    }
+
+    updated() {
+        this.setStyleVars();
     }
 
     private startAnimation() {
