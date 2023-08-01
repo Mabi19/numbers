@@ -175,6 +175,8 @@ export class AdditionDemo extends LitElement {
                 display: flex;
                 flex-flow: row nowrap;
                 gap: 6px;
+
+                margin-top: 4px;
             }
 
             button {
@@ -230,11 +232,14 @@ export class AdditionDemo extends LitElement {
         });
     }
 
-    updated() {
+    firstUpdated() {
         this.setStyleVars();
     }
 
     private startAnimation() {
+        // in case some desync occurs
+        this.setStyleVars();
+
         // initialize parameters
         this.animationProgress = -0.5;
         this.overflow.fill(false);
