@@ -30,8 +30,16 @@ body {
     margin: 0;
 }
 
-main {
+main, footer {
     padding: 12px 8px;
+    width: 650px;
+    max-width: 100%;
+    margin: auto;
+}
+
+footer {
+    border-top: 1px solid black;
+    text-align: center;
 }
 
 h1, h2, h3 {
@@ -51,13 +59,6 @@ aside.subheader {
 
 p, ul {
     margin: 12px 0;
-}
-
-.content {
-    margin: 8px;
-    width: 650px;
-    max-width: 100%;
-    margin: auto;
 }
 
 dt {
