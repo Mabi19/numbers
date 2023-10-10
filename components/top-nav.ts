@@ -1,4 +1,5 @@
-import { LitElement, html, css, property } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
+import { customElement, property } from "lit/decorators.js";
 
 @customElement('top-nav')
 export class SimpleNav extends LitElement {
