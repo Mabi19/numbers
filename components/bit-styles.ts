@@ -47,7 +47,7 @@ export const bitStyles = css`
     }
 
     .bit.gray {
-        --bit-bg: #ddd;
+        --bit-bg: var(--primary);
         --bit-color: #444;
     }
 `;

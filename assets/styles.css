@@ -130,7 +130,7 @@ caption {
 
 th {
     border: 1px solid black !important;
-    background-color: rgb(81, 100, 117);
+    background-color: var(--accent);
     color: whitesmoke;
 }
 
@@ -161,7 +161,7 @@ tr:nth-child(2n) {
 }
 
 tr:nth-child(2n+1) {
-    background-color: rgb(212, 219, 226);
+    background-color: var(--primary);
 }
 
 .note {
