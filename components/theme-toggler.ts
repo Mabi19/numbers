@@ -13,9 +13,7 @@ export class SimpleNav extends LitElement {
 
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
-    console.log("start works");
     window.document.body.classList.toggle('dark-mode');
-    console.log("end also");
   }
 
   render() {
@@ -25,7 +23,7 @@ export class SimpleNav extends LitElement {
           ${this.isDarkTheme
             ? "Light"
             : "Dark"}
-          Toggle Theme
+          Mode
         </button>
       </nav>
     `;
