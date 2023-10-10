@@ -16,6 +16,14 @@
         url("./CascadiaCode.woff2");
 }
 
+:root {
+    --body-clr: #fff;
+}
+
+.dark-mode {
+    --body-clr: #000;
+}
+
 *, *::after, *::before {
     box-sizing: border-box;
 }
@@ -25,7 +33,7 @@ body {
     font-size: 16px;
     line-height: 1.4;
     color: #333;
-
+    background-color: var(--body-clr);
     width: 100%;
     margin: 0;
 }
