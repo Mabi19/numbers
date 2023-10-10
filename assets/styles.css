@@ -16,12 +16,20 @@
         url("./CascadiaCode.woff2");
 }
 
-:root {
-    --body-clr: #fff;
-}
-
+:root{
+    --text: #000000;
+    --background: #e1e8ea;
+    --primary: #91a9b1;
+    --secondary: #e1e8ea;
+    --accent: #6a8b95;
+  }
+  
 .dark-mode {
-    --body-clr: #000;
+--text: #ffffff;
+--background: #151c1e;
+--primary: #4e666e;
+--secondary: #151c1e;
+--accent: #6a8b95;
 }
 
 *, *::after, *::before {
@@ -32,8 +40,8 @@ body {
     font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
     font-size: 16px;
     line-height: 1.4;
-    color: #333;
-    background-color: var(--body-clr);
+    color: var(--text);
+    background-color: var(--background);
     width: 100%;
     margin: 0;
 }
@@ -46,7 +54,7 @@ main, footer {
 }
 
 footer {
-    border-top: 1px solid black;
+    border-top: 1px solid var(--primary);
     text-align: center;
 }
 
@@ -97,8 +105,7 @@ a:active {
 hr {
     width: 100%;
     border: none;
-    border-bottom: 2px dashed #333;
-
+    border-bottom: 2px dashed var(--primary);
     margin: 24px 0;
 }
 
