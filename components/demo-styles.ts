@@ -16,7 +16,7 @@ export const demoStyles = css`
         border: 1px solid black;
         border-radius: 8px;
 
-        background-color: #fefefe;
+        background-color: var(--secondary);
 
         display: flex;
         flex-flow: column nowrap;
