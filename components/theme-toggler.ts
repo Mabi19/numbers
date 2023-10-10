@@ -13,7 +13,9 @@ export class SimpleNav extends LitElement {
 
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
-    document.body.classList.toggle('dark-mode');
+    console.log("start works");
+    window.document.body.classList.toggle('dark-mode');
+    console.log("end also");
   }
 
   render() {
