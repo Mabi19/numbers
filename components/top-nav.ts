@@ -38,9 +38,6 @@ export class SimpleNav extends LitElement {
     return html`
       <nav>
         <button @click="${this.toggleTheme}">
-          ${this.isDarkTheme
-            ? html`Light`
-            : html`Dark`}
           Toggle Theme
         </button>
       </nav>
