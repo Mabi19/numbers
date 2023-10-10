@@ -14,7 +14,7 @@ export const radioStyles = css`
     }
 
     input[checked] + label {
-        background-color: #333;
+        background-color: var(--accent);
         color: whitesmoke;
     }
 

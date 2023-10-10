@@ -16,23 +16,25 @@
         url("./CascadiaCode.woff2");
 }
 
-:root{
+:root {
     --text: #000000;
-    --background: #e1e8ea;
-    --primary: #91a9b1;
-    --secondary: #e1e8ea;
-    --accent: #6a8b95;
-  }
-  
-.dark-mode {
---text: #ffffff;
---background: #151c1e;
---primary: #4e666e;
---secondary: #151c1e;
---accent: #6a8b95;
+    --background: #ffffff;
+    --primary: #bec5da;
+    --secondary: #dcd5c1;
+    --accent: #4b5a86;
 }
 
-*, *::after, *::before {
+.dark-mode {
+    --text: #ffffff;
+    --background: #151c1e;
+    --primary: #4e666e;
+    --secondary: #151c1e;
+    --accent: #6a8b95;
+}
+
+*,
+*::after,
+*::before {
     box-sizing: border-box;
 }
 
@@ -46,7 +48,8 @@ body {
     margin: 0;
 }
 
-main, footer {
+main,
+footer {
     padding: 12px 8px;
     width: 650px;
     max-width: 100%;
@@ -58,7 +61,9 @@ footer {
     text-align: center;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     line-height: 1;
 }
 
@@ -73,7 +78,8 @@ aside.subheader {
     font-style: italic;
 }
 
-p, ul {
+p,
+ul {
     margin: 12px 0;
 }
 
@@ -128,7 +134,8 @@ th {
     color: whitesmoke;
 }
 
-th, td {
+th,
+td {
     padding: 4px 8px;
 }
 
