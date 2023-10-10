@@ -13,7 +13,7 @@ export class SimpleNav extends LitElement {
 
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
-    document.body.classList.toggle('dark-theme', this.isDarkTheme);
+    document.body.classList.toggle('dark-theme');
   }
 
   render() {
