@@ -56,6 +56,11 @@ body {
 nav {
     display: flex;
     justify-content: flex-end;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 1rem;
 }
 
 main,
