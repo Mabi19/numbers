@@ -192,6 +192,7 @@ export class AdditionDemo extends LitElement {
                 align-items: center;
                 gap: 4px;
                 cursor: pointer;
+                transition: background-color ease-in-out 0.2s;
             }
 
             button:hover {
