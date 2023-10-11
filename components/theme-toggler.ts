@@ -6,14 +6,20 @@ export class SimpleNav extends LitElement {
   @property({ type: Boolean }) isDarkTheme = false;
 
   static styles = css`
-  .th-switch {
+  .tgl-switch {
     height: 22px;
     width: 40px;
     display: block;
     border-radius: 11px;
     border: 1px solid rgba(60, 60, 60, 0.29);
-    background-color: #f1f1f1;
     position: relative;
+    background-color: #f1f1f1;
+  }
+  .tgl-switch:hover {
+    border-color: #8e8e8e;
+  }
+  .tgl-dark {
+    background-color: #2f2f2f !important;
   }
   .ball {
     background-color: #fff;
@@ -33,6 +39,9 @@ export class SimpleNav extends LitElement {
     height: 12px;
     widtth: 12px;
   }
+  .active-ball {
+    transform: translateX(100%);
+  }
   `;
 
   toggleTheme() {
@@ -42,9 +51,9 @@ export class SimpleNav extends LitElement {
 
   render() {
     return html`
-    <button class="th-switch" @click=${this.toggleTheme}>
-      <span class="ball">
-        <img src="assets/${this.isDarkTheme? "sun" : "moon"}.svg" />
+    <button class="tgl-switch ${this.isDarkTheme?"tgl-dark":""}" @click=${this.toggleTheme}>
+      <span class="ball ${this.isDarkTheme?"active-ball":""}">
+        <img src="assets/${this.isDarkTheme? "moon" : "sun"}.svg" />
       </span>
     </button>
     `;
