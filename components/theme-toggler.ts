@@ -55,8 +55,8 @@ export class SimpleNav extends LitElement {
     <label class="switch">
       <input type="checkbox" onchange="changeTheme()"/>
       <div class="ball"></div>
-      <img src="moon.svg" />
-      <img src="sun.svg" />
+      <img src="assets/moon.svg" />
+      <img src="assets/sun.svg" />
     </label>
     `;
   }
