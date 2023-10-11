@@ -21,6 +21,7 @@ export class SimpleNav extends LitElement {
       border: 1px solid #91a9b1;
       border-radius: 1em;
       position: relative;
+      pointer: cursor;
     }
     .ball {
       height: 1em;
