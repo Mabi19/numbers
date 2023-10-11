@@ -20,6 +20,7 @@ export class SimpleNav extends LitElement {
   }
   .tgl-dark {
     background-color: #2f2f2f !important;
+    border: 1px solid rgba(84, 84, 84, .65) !important;
   }
   .ball {
     background-color: #fff;
