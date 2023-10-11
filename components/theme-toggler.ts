@@ -42,6 +42,7 @@ export class SimpleNav extends LitElement {
   }
   .active-ball {
     transform: translateX(100%);
+    background-color: #000 !important;
   }
   `;
 
