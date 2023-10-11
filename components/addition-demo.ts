@@ -162,7 +162,7 @@ export class AdditionDemo extends LitElement {
             }
 
             .line {
-                border-bottom: 2px solid black;
+                border-bottom: 2px solid var(--accent);
                 grid-area: line;
             }
 

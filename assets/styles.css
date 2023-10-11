@@ -133,7 +133,7 @@ caption {
 }
 
 th {
-    border: 1px solid black !important;
+    border: 1px solid var(--accent) !important;
     background-color: var(--accent);
     color: whitesmoke;
 }
@@ -149,7 +149,7 @@ td:first-child {
 
 td {
     text-align: center;
-    border: 1px solid darkgray;
+    border: 1px solid var(--accent);
 }
 
 td[colspan] {
@@ -161,7 +161,7 @@ td:last-child {
 }
 
 tr:nth-child(2n) {
-    background-color: whitesmoke;
+    background-color: var(--background);
 }
 
 tr:nth-child(2n+1) {
