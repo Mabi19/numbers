@@ -6,45 +6,33 @@ export class SimpleNav extends LitElement {
   @property({ type: Boolean }) isDarkTheme = false;
 
   static styles = css`
-    .switch input {
-      position: absolute;
-      opacity: 0;
-    }
-
-    .switch {
-      display: flex;
-      justify-content: space-between;
-      height: 1em;
-      width: 2em;
-      padding: 1px;
-      background-color: #91a9b1;
-      border: 1px solid #91a9b1;
-      border-radius: 1em;
-      position: relative;
-      pointer: cursor;
-      
-    }
-    .ball {
-      height: 1em;
-      width: 1em;
-      border-radius: 1em;
-      background: #fff;
-      -webkit-transform: translateX(100%);
-        -moz-transform: translateX(100%);
-              transform: translateX(100%);
-      -webkit-transition: all 300ms;
-        -moz-transition: all 300ms;
-              transition: all 300ms;
-      position: absolute;
-      top: 1px;
-      left: 1px;
-    }
-
-    .switch input:checked + .ball {
-      -webkit-transform: translateX(0%);
-        -moz-transform: translateX(0%);
-              transform: translateX(0%);
-    }
+  .th-switch {
+    height: 22px;
+    width: 40px;
+    display: block;
+    border-radius: 11px;
+    border: 1px solid rgba(60, 60, 60, 0.29);
+    background-color: #f1f1f1;
+    position: relative;
+  }
+  .ball {
+    background-color: #fff;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 1px 2px rgba(0, 0, 0, .06);
+    transition: background-color .25s,transform .25s;
+  }
+  .ball img {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: 12px;
+    widtth: 12px;
+  }
   `;
 
   toggleTheme() {
@@ -54,12 +42,11 @@ export class SimpleNav extends LitElement {
 
   render() {
     return html`
-    <label class="switch">
-      <input type="checkbox"  @click=${this.toggleTheme}/>
-      <div class="ball"></div>
-      <img src="assets/moon.svg" />
-      <img src="assets/sun.svg" />
-    </label>
+    <button class="th-switch" onclick="toggleTheme()">
+      <span class="ball">
+        <img src="sun.svg" />
+      </span>
+    </button>
     `;
   }
 }
