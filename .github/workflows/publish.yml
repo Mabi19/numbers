@@ -32,7 +32,7 @@ jobs:
         needs: build
         if: |
             github.ref == 'refs/heads/main' &&
-            github.repository_owner == 'malay77patra'
+            github.repository_owner == 'Mabi19'
 
         environment:
             name: github-pages
