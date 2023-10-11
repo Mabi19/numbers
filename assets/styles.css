@@ -22,7 +22,7 @@
     --primary: #bec5da;
     --secondary: #dcd5c1;
     --accent: #4b5a86;
-    --accent-svg-filter: invert(33%) sepia(12%) saturate(1783%) hue-rotate(187deg) brightness(50%) contrast(85%);
+    --accent-svg-filter: invert(17%) sepia(4%) saturate(23%) hue-rotate(90deg) brightness(86%) contrast(85%);
     --bit-bottom: #333;
 }
 
@@ -32,7 +32,7 @@
     --primary: #4e666e;
     --secondary: #0c1921;
     --accent: #6a8b95;
-    --accent-svg-filter: invert(93%) sepia(3%) saturate(1224%) hue-rotate(199deg) brightness(96%) contrast(87%);
+    --accent-svg-filter: invert(92%) sepia(10%) saturate(201%) hue-rotate(175deg) brightness(88%) contrast(94%);
     --bit-bottom: #4e666e;
 }
 
