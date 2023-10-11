@@ -202,6 +202,9 @@ export class AdditionDemo extends LitElement {
             button img {
                 height: 1em;
             }
+            .accent-svg {
+                filter: var(--accent-svg-filter);
+            }
         `
     ];
 
@@ -389,12 +392,12 @@ export class AdditionDemo extends LitElement {
         `;
         const stepButton = html`
             <button @click=${this.handleStep}>
-                <img src="./assets/step.svg" role="presentation" width="18" height="16"><span>Step</span>
+                <img src="./assets/step.svg" class="accent-svg" role="presentation" width="18" height="16"><span>Step</span>
             </button>
         `;
         const stopButton = html`
             <button @click=${this.handleStop}>
-                <img src="./assets/stop.svg" role="presentation" width="16" height="16"><span>Stop</span>
+                <img src="./assets/stop.svg" class="accent-svg" role="presentation" width="16" height="16"><span>Stop</span> 
             </button>
         `;
 

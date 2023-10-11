@@ -27,7 +27,7 @@ export const bitStyles = css`
         user-select: none;
         cursor: pointer;
 
-        --bit-color: #333;
+        --bit-color: var(--accent);
         border-bottom: 3px solid var(--bit-color);
     }
 
