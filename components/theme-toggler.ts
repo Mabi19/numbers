@@ -14,6 +14,7 @@ export class SimpleNav extends LitElement {
     border: 1px solid rgba(60, 60, 60, 0.29);
     position: relative;
     background-color: #f1f1f1;
+    cursor: pointer;
   }
   .tgl-switch:hover {
     border-color: #8e8e8e;
