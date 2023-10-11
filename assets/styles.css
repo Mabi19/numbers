@@ -72,6 +72,10 @@ footer {
     margin: auto;
 }
 
+main {
+    padding-top: 1rem;
+}
+
 footer {
     border-top: 1px solid var(--primary);
     text-align: center;
