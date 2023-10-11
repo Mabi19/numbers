@@ -53,6 +53,7 @@ export function baseDemo<const Types extends readonly string[]>(options: BaseDem
                 .lock {
                     color: #333;
                     height: 1.5rem;
+                    filter: var(--accent-svg-filter);
                 }
             `
         ]

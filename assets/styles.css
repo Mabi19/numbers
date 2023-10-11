@@ -22,6 +22,8 @@
     --primary: #bec5da;
     --secondary: #dcd5c1;
     --accent: #4b5a86;
+    --accent-svg-filter: 
+    filter: invert(33%) sepia(12%) saturate(1783%) hue-rotate(187deg) brightness(96%) contrast(85%);
 }
 
 .dark-mode {
