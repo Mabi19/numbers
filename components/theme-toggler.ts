@@ -18,14 +18,12 @@ export class SimpleNav extends LitElement {
 
   render() {
     return html`
-      <nav>
-        <button @click="${this.toggleTheme}">
-          ${this.isDarkTheme
-            ? "Light"
-            : "Dark"}
-          Mode
-        </button>
-      </nav>
+      <button @click="${this.toggleTheme}">
+        ${this.isDarkTheme
+          ? "Light"
+          : "Dark"}
+        Mode
+      </button>
     `;
   }
 }
