@@ -42,7 +42,7 @@ export class SimpleNav extends LitElement {
 
   render() {
     return html`
-    <button class="th-switch" @click=${this.toggleTheme()}>
+    <button class="th-switch" onclick="toggleTheme()">
       <span class="ball">
         <img src="assets/${this.isDarkTheme? "sun" : "moon"}.svg" />
       </span>
