@@ -14,7 +14,6 @@ export class SimpleNav extends LitElement {
     border: 1px solid rgba(60, 60, 60, 0.29);
     position: relative;
     background-color: #f1f1f1;
-    transition: background-color .25s;
   }
   .tgl-switch:hover {
     border-color: #8e8e8e;
@@ -22,6 +21,9 @@ export class SimpleNav extends LitElement {
   .tgl-dark {
     background-color: #2f2f2f !important;
     border: 1px solid rgba(84, 84, 84, .65) !important;
+  }
+  .tgl-dark:hover {
+    border-color: rgba(195, 195, 195, 0.65);
   }
   .ball {
     background-color: #fff;
@@ -32,7 +34,7 @@ export class SimpleNav extends LitElement {
     height: 18px;
     border-radius: 50%;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 1px 2px rgba(0, 0, 0, .06);
-    transition: background-color .25s,transform .25s;
+    transition: transform .25s;
   }
   .ball img {
     position: absolute;
