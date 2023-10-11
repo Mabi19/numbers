@@ -22,15 +22,16 @@
     --primary: #bec5da;
     --secondary: #dcd5c1;
     --accent: #4b5a86;
-    --accent-svg-filter: invert(33%) sepia(12%) saturate(1783%) hue-rotate(187deg) brightness(85%) contrast(85%);
+    --accent-svg-filter: invert(33%) sepia(12%) saturate(1783%) hue-rotate(187deg) brightness(50%) contrast(85%);
 }
 
 .dark-mode {
-    --text: #d7edf9;
+    --text: #bec5da;
     --background: #04121a;
     --primary: #4e666e;
     --secondary: #0c1921;
     --accent: #6a8b95;
+    --accent-svg-filter: invert(56%) sepia(16%) saturate(241%) hue-rotate(145deg) brightness(90%) contrast(88%);
 }
 
 *,
