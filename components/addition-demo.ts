@@ -182,8 +182,8 @@ export class AdditionDemo extends LitElement {
             button {
                 background-color: inherit;
                 font: inherit;
-                color: #333;
-                border: 1px solid #333;
+                color: var(--text);
+                border: 1px solid var(--accent);
                 border-radius: 4px;
                 padding: 4px;
 
