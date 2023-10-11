@@ -191,7 +191,6 @@ export class AdditionDemo extends LitElement {
                 flex-flow: row nowrap;
                 align-items: center;
                 gap: 4px;
-
                 cursor: pointer;
             }
 
