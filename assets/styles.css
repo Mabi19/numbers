@@ -22,7 +22,7 @@
     --secondary: #ffffff;
     --accent: #4b5a86;
     --border: #000000;
-    --accent-svg-filter: invert(16%) sepia(2%) saturate(109%) hue-rotate(71deg) brightness(103%) contrast(89%);
+    --svg-filter: invert(16%) sepia(2%) saturate(109%) hue-rotate(71deg) brightness(103%) contrast(89%);
 
     --table-head: #516475;
     --table-border: darkgray;

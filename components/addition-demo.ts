@@ -183,7 +183,7 @@ export class AdditionDemo extends LitElement {
                 background-color: inherit;
                 font: inherit;
                 color: var(--text);
-                border: 1px solid var(--accent);
+                border: 1px solid var(--text);
                 border-radius: 4px;
                 padding: 4px;
 
@@ -203,7 +203,7 @@ export class AdditionDemo extends LitElement {
                 height: 1em;
             }
             .accent-svg {
-                filter: var(--accent-svg-filter);
+                filter: var(--svg-filter);
             }
         `
     ];
