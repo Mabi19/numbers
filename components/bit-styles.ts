@@ -27,7 +27,7 @@ export const bitStyles = css`
         user-select: none;
         cursor: pointer;
 
-        border-bottom: 3px solid var(--bit-bottom);
+        border-bottom: 3px solid var(--text);
     }
 
     .bit.red {
