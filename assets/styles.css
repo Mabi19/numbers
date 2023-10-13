@@ -19,7 +19,6 @@
 :root {
     --text: #333;
     --background: #ffffff;
-    --primary: #bec5da;
     --secondary: #ffffff;
     --accent: #4b5a86;
     --accent-svg-filter: invert(17%) sepia(4%) saturate(23%) hue-rotate(90deg) brightness(86%) contrast(85%);
@@ -137,7 +136,7 @@ a:active {
 hr {
     width: 100%;
     border: none;
-    border-bottom: 2px dashed var(--border);
+    border-bottom: 2px dashed var(--text);
     margin: 24px 0;
 }
 
