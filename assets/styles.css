@@ -21,12 +21,11 @@
     --background: #ffffff;
     --secondary: #ffffff;
     --accent: #4b5a86;
-    --accent-svg-filter: invert(17%) sepia(4%) saturate(23%) hue-rotate(90deg) brightness(86%) contrast(85%);
-    --bit-bottom: #333;
+    --border: #000000;
+    --accent-svg-filter: invert(16%) sepia(2%) saturate(109%) hue-rotate(71deg) brightness(103%) contrast(89%);
 
     --table-head: #516475;
     --table-border: darkgray;
-    --border: #000000;
     --row-2n: #f5f5f5;
     --row-2n1: #d4dbe2;
 }
