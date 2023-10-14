@@ -32,10 +32,10 @@
 
 .dark-mode {
     --text: whitesmoke;
-    --background: #010409;
-    --secondary: #161b22;
+    --background: #04121a;
+    --secondary: #0c1921;
     --accent: #546f80;
-    /* --border: whitesmoke; */
+    --border: whitesmoke;
     --accent-svg-filter: invert(92%) sepia(10%) saturate(201%) hue-rotate(175deg) brightness(88%) contrast(94%);
     
     --table-head: #415c73;
