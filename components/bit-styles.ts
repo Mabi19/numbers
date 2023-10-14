@@ -26,8 +26,8 @@ export const bitStyles = css`
         padding: 1px 1px 0 1px;
         user-select: none;
         cursor: pointer;
-
-        border-bottom: 3px solid var(--text);
+        --bit-color: var(--text);
+        border-bottom: 3px solid var(--bit-color);
     }
 
     .bit.red {
@@ -46,7 +46,7 @@ export const bitStyles = css`
     }
 
     .bit.gray {
-        --bit-bg: var(--primary);
+        --bit-bg: #ddd;
         --bit-color: #444;
     }
 `;
