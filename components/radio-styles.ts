@@ -20,14 +20,14 @@ export const radioStyles = css`
 
     label {
         padding: 4px 8px;
-        border: 1px solid var(--accent);
+        border: 1px solid var(--border);
         border-left: none;
 
         cursor: pointer;
     }
 
     label:first-of-type {
-        border-left: 1px solid var(--accent);
+        border-left: 1px solid var(--border);
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
     }
