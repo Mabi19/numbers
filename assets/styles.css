@@ -31,13 +31,17 @@
 }
 
 .dark-mode {
-    --text: #bec5da;
-    --background: #04121a;
-    --primary: #394b51;
-    --secondary: #0c1921;
-    --accent: #6a8b95;
+    --text: whitesmoke;
+    --background: #010409;
+    --secondary: #161b22;
+    --accent: #546f80;
+    /* --border: whitesmoke; */
     --accent-svg-filter: invert(92%) sepia(10%) saturate(201%) hue-rotate(175deg) brightness(88%) contrast(94%);
-    --bit-bottom: #4e666e;
+    
+    --table-head: #415c73;
+    --table-border: darkgray;
+    --row-2n: #171f24;
+    --row-2n1: #303742;
 }
 
 *,
