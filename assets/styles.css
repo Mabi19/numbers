@@ -35,8 +35,8 @@
     --background: #04121a;
     --secondary: #0c1921;
     --accent: #546f80;
-    --border: whitesmoke;
-    --accent-svg-filter: invert(92%) sepia(10%) saturate(201%) hue-rotate(175deg) brightness(88%) contrast(94%);
+    /* --border: whitesmoke; */
+    --accent-svg-filter: invert(99%) sepia(3%) saturate(373%) hue-rotate(249deg) brightness(118%) contrast(92%);
     
     --table-head: #415c73;
     --table-border: darkgray;
