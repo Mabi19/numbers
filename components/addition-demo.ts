@@ -199,6 +199,9 @@ export class AdditionDemo extends LitElement {
                 background-color: rgb(245, 245, 245);
             }
             
+            .dark-mode button:hover {
+                background-color: #132029;
+            }
 
             button img {
                 height: 1em;
