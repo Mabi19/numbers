@@ -62,7 +62,7 @@ body {
     position: relative;
 }
 
-nav {
+/* nav {
     display: flex;
     justify-content: flex-end;
     position: absolute;
@@ -70,7 +70,7 @@ nav {
     top: 0;
     width: 100%;
     padding: 0.5rem;
-}
+} */
 
 main,
 footer {
