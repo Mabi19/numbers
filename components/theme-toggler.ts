@@ -6,10 +6,12 @@ export class SimpleNav extends LitElement {
     @property({ type: Boolean }) isDarkTheme = false;
 
     connectedCallback() {
+        // check local storage for previously stored theme
         super.connectedCallback();
         const storedTheme = localStorage.getItem('isDarkTheme');
         if (storedTheme !== null) {
             this.isDarkTheme = storedTheme === 'true';
+        // choose from user preferences if no theme is stored already
         } else {
             this.isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         }
