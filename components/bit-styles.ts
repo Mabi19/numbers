@@ -49,4 +49,8 @@ export const bitStyles = css`
         --bit-bg: #ddd;
         --bit-color: #444;
     }
+    
+    :host-context(body.dark-mode) .bit.gray {
+        --bit-bg: #444444;
+    }
 `;

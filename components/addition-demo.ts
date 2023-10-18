@@ -196,11 +196,11 @@ export class AdditionDemo extends LitElement {
             }
 
             button:hover {
-                background-color: rgb(245, 245, 245);
+                background-color: whitesmoke;
             }
             
             :host-context(body.dark-mode) button:hover {
-                background-color: #202D35;
+                background-color: var(--accent);
             }     
 
             button img {
@@ -267,7 +267,7 @@ export class AdditionDemo extends LitElement {
         }
 
         let delay: number;
-        
+
         const truncatedProgress = Math.trunc(this.animationProgress)
         if (this.animationProgress == truncatedProgress) {
             // move together
@@ -279,7 +279,7 @@ export class AdditionDemo extends LitElement {
                 Number(this.overflow[truncatedProgress]);
             const resultBit = Boolean(sum & 1);
             const overflowBit = Boolean(sum & 2);
-            
+
             this.result[truncatedProgress] = resultBit;
             this.overflow[truncatedProgress + 1] = overflowBit;
 
@@ -287,7 +287,7 @@ export class AdditionDemo extends LitElement {
 
             delay = 800;
         }
-        
+
         if (this.isAutoplaying && this.animationProgress <= 7.5) {
             setTimeout(() => this.animationStep(), delay);
         }
@@ -333,7 +333,7 @@ export class AdditionDemo extends LitElement {
     private makeBitElements(bits: boolean[], which: 1 | 2) {
         return repeat(bits, (_bit, idx) => idx, (bit, idx) => {
             let animClass = "";
-            
+
             if (this.animationProgress == idx) {
                 animClass = "animate";
             } else if (this.animationProgress > idx) {
@@ -348,7 +348,7 @@ export class AdditionDemo extends LitElement {
 
     private makeOverflow() {
         return repeat(this.overflow, (_bit, idx) => idx, (bit, idx) => {
-            let extraClass: string; 
+            let extraClass: string;
             if (!bit) {
                 extraClass = "hidden";
             } else if (this.animationProgress == idx) {
