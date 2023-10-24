@@ -183,7 +183,7 @@ export class AdditionDemo extends LitElement {
                 background-color: inherit;
                 font: inherit;
                 color: var(--text);
-                border: 1px solid var(--text);
+                border: 1px solid var(--border);
                 border-radius: 4px;
                 padding: 4px;
 
