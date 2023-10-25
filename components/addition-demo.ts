@@ -196,7 +196,8 @@ export class AdditionDemo extends LitElement {
             }
 
             button:hover {
-                background-color: whitesmoke;
+                background-color: var(--accent);
+                color: whitesmoke;
             }
             
             :host-context(body.dark-mode) button:hover {
