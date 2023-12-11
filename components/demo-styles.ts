@@ -13,10 +13,10 @@ export const demoStyles = css`
     .demo {
         margin: 4px 0;
         padding: 8px;
-        border: 1px solid black;
+        border: 1px solid var(--border);
         border-radius: 8px;
 
-        background-color: #fefefe;
+        background-color: var(--secondary);
 
         display: flex;
         flex-flow: column nowrap;

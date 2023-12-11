@@ -14,20 +14,20 @@ export const radioStyles = css`
     }
 
     input[checked] + label {
-        background-color: #333;
+        background-color: var(--accent);
         color: whitesmoke;
     }
 
     label {
         padding: 4px 8px;
-        border: 1px solid black;
+        border: 1px solid var(--border);
         border-left: none;
 
         cursor: pointer;
     }
 
     label:first-of-type {
-        border-left: 1px solid black;
+        border-left: 1px solid var(--border);
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
     }

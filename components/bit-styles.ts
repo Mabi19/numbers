@@ -26,8 +26,7 @@ export const bitStyles = css`
         padding: 1px 1px 0 1px;
         user-select: none;
         cursor: pointer;
-
-        --bit-color: #333;
+        --bit-color: var(--text);
         border-bottom: 3px solid var(--bit-color);
     }
 
@@ -49,5 +48,9 @@ export const bitStyles = css`
     .bit.gray {
         --bit-bg: #ddd;
         --bit-color: #444;
+    }
+    
+    :host-context(body.dark-mode) .bit.gray {
+        --bit-bg: #444444;
     }
 `;

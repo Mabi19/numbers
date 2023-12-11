@@ -162,7 +162,7 @@ export class AdditionDemo extends LitElement {
             }
 
             .line {
-                border-bottom: 2px solid black;
+                border-bottom: 2px solid var(--text);
                 grid-area: line;
             }
 
@@ -182,8 +182,8 @@ export class AdditionDemo extends LitElement {
             button {
                 background-color: inherit;
                 font: inherit;
-                color: #333;
-                border: 1px solid #333;
+                color: var(--text);
+                border: 1px solid var(--border);
                 border-radius: 4px;
                 padding: 4px;
 
@@ -191,16 +191,24 @@ export class AdditionDemo extends LitElement {
                 flex-flow: row nowrap;
                 align-items: center;
                 gap: 4px;
-
                 cursor: pointer;
+                transition: background-color ease-in-out 0.2s;
             }
 
             button:hover {
-                background-color: #f5f5f5;
+                background-color: var(--accent);
+                color: whitesmoke;
             }
+            
+            :host-context(body.dark-mode) button:hover {
+                background-color: var(--accent);
+            }     
 
             button img {
                 height: 1em;
+            }
+            .accent-svg {
+                filter: var(--svg-filter);
             }
         `
     ];
@@ -260,7 +268,7 @@ export class AdditionDemo extends LitElement {
         }
 
         let delay: number;
-        
+
         const truncatedProgress = Math.trunc(this.animationProgress)
         if (this.animationProgress == truncatedProgress) {
             // move together
@@ -272,7 +280,7 @@ export class AdditionDemo extends LitElement {
                 Number(this.overflow[truncatedProgress]);
             const resultBit = Boolean(sum & 1);
             const overflowBit = Boolean(sum & 2);
-            
+
             this.result[truncatedProgress] = resultBit;
             this.overflow[truncatedProgress + 1] = overflowBit;
 
@@ -280,7 +288,7 @@ export class AdditionDemo extends LitElement {
 
             delay = 800;
         }
-        
+
         if (this.isAutoplaying && this.animationProgress <= 7.5) {
             setTimeout(() => this.animationStep(), delay);
         }
@@ -326,7 +334,7 @@ export class AdditionDemo extends LitElement {
     private makeBitElements(bits: boolean[], which: 1 | 2) {
         return repeat(bits, (_bit, idx) => idx, (bit, idx) => {
             let animClass = "";
-            
+
             if (this.animationProgress == idx) {
                 animClass = "animate";
             } else if (this.animationProgress > idx) {
@@ -341,7 +349,7 @@ export class AdditionDemo extends LitElement {
 
     private makeOverflow() {
         return repeat(this.overflow, (_bit, idx) => idx, (bit, idx) => {
-            let extraClass: string; 
+            let extraClass: string;
             if (!bit) {
                 extraClass = "hidden";
             } else if (this.animationProgress == idx) {
@@ -384,17 +392,17 @@ export class AdditionDemo extends LitElement {
 
         const startButton = html`
             <button @click=${this.handleAutoplay}>
-                <img src="./assets/play.svg" role="presentation" width="16" height="16"><span>Start</span>
+                <img src="./assets/play.svg" class="accent-svg" role="presentation" width="16" height="16"><span>Start</span>
             </button>
         `;
         const stepButton = html`
             <button @click=${this.handleStep}>
-                <img src="./assets/step.svg" role="presentation" width="18" height="16"><span>Step</span>
+                <img src="./assets/step.svg" class="accent-svg" role="presentation" width="18" height="16"><span>Step</span>
             </button>
         `;
         const stopButton = html`
             <button @click=${this.handleStop}>
-                <img src="./assets/stop.svg" role="presentation" width="16" height="16"><span>Stop</span>
+                <img src="./assets/stop.svg" class="accent-svg" role="presentation" width="16" height="16"><span>Stop</span> 
             </button>
         `;
 

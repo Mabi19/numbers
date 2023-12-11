@@ -16,7 +16,35 @@
         url("./CascadiaCode.woff2");
 }
 
-*, *::after, *::before {
+:root {
+    --text: #333;
+    --background: #ffffff;
+    --secondary: #ffffff;
+    --accent: #4b5a86;
+    --border: #000000;
+    --svg-filter: invert(16%) sepia(2%) saturate(109%) hue-rotate(71deg) brightness(103%) contrast(89%);
+    --table-head: #516475;
+    --table-border: darkgray;
+    --row-2n: #f5f5f5;
+    --row-2n1: #d4dbe2;
+}
+
+.dark-mode {
+    --text: whitesmoke;
+    --background: #04121a;
+    --secondary: #0c1921;
+    --accent: #546f80;
+    --border: #3a5160;
+    --svg-filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(243deg) brightness(110%) contrast(92%);
+    --table-head: #415c73;
+    --table-border: darkgray;
+    --row-2n: #171f24;
+    --row-2n1: #303742;
+}
+
+*,
+*::after,
+*::before {
     box-sizing: border-box;
 }
 
@@ -24,25 +52,40 @@ body {
     font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
     font-size: 16px;
     line-height: 1.4;
-    color: #333;
-
+    color: var(--text);
+    background-color: var(--background);
     width: 100%;
     margin: 0;
+    position: relative;
 }
 
-main, footer {
+nav {
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+main,
+footer {
     padding: 12px 8px;
     width: 650px;
     max-width: 100%;
     margin: auto;
 }
 
+main {
+    padding-top: 1rem;
+}
+
 footer {
-    border-top: 1px solid black;
+    border-top: 1px solid var(--border);
     text-align: center;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     line-height: 1;
 }
 
@@ -57,7 +100,8 @@ aside.subheader {
     font-style: italic;
 }
 
-p, ul {
+p,
+ul {
     margin: 12px 0;
 }
 
@@ -78,8 +122,16 @@ a {
     color: #0c70d4;
 }
 
+.dark-mode a {
+    color: #519ce8;
+}
+
 a:visited {
     color: rebeccapurple;
+}
+
+.dark-mode a:visited {
+    color: #a879d7;
 }
 
 a:active {
@@ -89,17 +141,13 @@ a:active {
 hr {
     width: 100%;
     border: none;
-    border-bottom: 2px dashed #333;
-
+    border-bottom: 2px dashed var(--text);
     margin: 24px 0;
 }
 
 table {
     table-layout: fixed;
     border-collapse: collapse;
-
-    border: 1px solid black;
-
     margin: 12px 0;
 }
 
@@ -108,12 +156,13 @@ caption {
 }
 
 th {
-    border: 1px solid black !important;
-    background-color: rgb(81, 100, 117);
+    border: 1px solid var(--border) !important;
+    background-color: var(--table-head);
     color: whitesmoke;
 }
 
-th, td {
+th,
+td {
     padding: 4px 8px;
 }
 
@@ -123,7 +172,7 @@ td:first-child {
 
 td {
     text-align: center;
-    border: 1px solid darkgray;
+    border: 1px solid var(--table-border);
 }
 
 td[colspan] {
@@ -135,11 +184,11 @@ td:last-child {
 }
 
 tr:nth-child(2n) {
-    background-color: whitesmoke;
+    background-color: var(--row-2n);
 }
 
 tr:nth-child(2n+1) {
-    background-color: rgb(212, 219, 226);
+    background-color: var(--row-2n1);
 }
 
 .note {

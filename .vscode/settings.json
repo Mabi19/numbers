@@ -1,4 +1,7 @@
 {
     "deno.enable": true,
-    "deno.enablePaths": ["./tools"]
+    "deno.enablePaths": [
+        "./tools"
+    ],
+    "liveServer.settings.port": 5501
 }
