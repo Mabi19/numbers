@@ -420,9 +420,8 @@
 <p>
     The obvious solution to that is rounding: after each mathematical operation, if the result does not have a bit pattern in our system,
     it snaps to the closest available value.
-    (Modern processors allow programs to choose the rounding mode, but
-    <a href="https://en.wikipedia.org/wiki/Rounding#Rounding_half_to_even">rounding half to even</a> is most common, as it minimizes
-    error accumulation)
+    (The default rounding mode is supposed to be <a href="https://en.wikipedia.org/wiki/Rounding#Rounding_half_to_even">rounding half to even</a>,
+    as it minimizes error accumulation - but most CPUs use round-to-nearest by default anyway.)
 </p>
 <p>
     Notice that now, each bit pattern actually represents a range of values &mdash;
